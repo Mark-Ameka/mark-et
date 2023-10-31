@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MarketItems extends Model
 {
     protected $fillable = [
+        'user_id',
         'item_name',
         'item_description',
         'item_qty',
