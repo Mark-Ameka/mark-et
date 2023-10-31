@@ -41,27 +41,27 @@
             </a>
         </div>
     @elseif($items->isEmpty())
-    <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col justify-center pt-2 items-center">
-            <p class="text-xl text-white">No data has found </p>
-        </div>
-        <div class="my-9">
-            <div class="flex justify-start items-center">
-                <a href="{{ route('item.create') }}" class="py-2 px-3 text-neutral-300 font-semibold rounded-lg border-2 border-neutral-500">
-                    <div class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-neutral-300 icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 5l0 14"></path>
-                            <path d="M5 12l14 0"></path>
-                         </svg>
-                        <p>
-                            Sell an Item
-                        </p>
-                    </div>
-                </a>
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col justify-center pt-2 items-center">
+                <p class="text-xl text-white">No data has found </p>
+            </div>
+            <div class="my-9">
+                <div class="flex justify-start items-center">
+                    <a href="{{ route('item.create') }}" class="py-2 px-3 text-neutral-300 font-semibold rounded-lg border-2 border-neutral-500">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-neutral-300 icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 5l0 14"></path>
+                                <path d="M5 12l14 0"></path>
+                            </svg>
+                            <p>
+                                Sell an Item
+                            </p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
     @else
         <div class="max-w-4xl mx-auto">
             @include('partials.alert')

@@ -16,11 +16,11 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Item Quantity:</label>
-                <input name="item_qty" type="number" class="w-full p-2 border border-gray-300 rounded" placeholder="e.g., '499'" required>
+                <input name="item_qty" type="number" class="w-full p-2 border border-gray-300 rounded" min="1" placeholder="e.g., '499'" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Item Price:</label>
-                <input name="item_price" type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="e.g., '120.35'" required>
+                <input name="item_price" type="text" class="w-full p-2 border border-gray-300 rounded" min="1" placeholder="e.g., '120.35'" required>
             </div>
             <button type="submit" class="w-full bg-neutral-800 hover:bg-neutral-700 text-white font-bold py-2 px-4 rounded">Submit</button>
         </form>
