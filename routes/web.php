@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function(){
     Route::resource('item', \App\Http\Controllers\MarketItemsController::class);
     Route::resource('user', \App\Http\Controllers\UserController::class);
 
+    Route::get('/', [MarketItemsController::class, 'search'])->name('item.search');
+
     Route::patch('/user/update_pass/{id}', [UserController::class, 'update_pass'])->name('user.update_pass');
     Route::get('/user/update_pass/{id}', [UserController::class, 'update_pass_index'])->name('user.update_pass_index');
 });

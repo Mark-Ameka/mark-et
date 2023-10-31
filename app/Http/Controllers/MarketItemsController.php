@@ -14,8 +14,10 @@ class MarketItemsController extends Controller
     public function index()
     {
         $items = MarketItems::all();
+
+        $empty = MarketItems::count() === 0;
     
-        return view('market.index', ['items' => $items]);
+        return view('market.index', ['items' => $items, 'empty' => $empty]);
     }
 
     /**
@@ -88,5 +90,16 @@ class MarketItemsController extends Controller
         $item->delete();
 
         return redirect()->back()->with('success', 'Item deleted successfully.');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        $items = MarketItems::where('item_name', 'LIKE', '%' . $query . '%')->get();
+        
+        $empty = MarketItems::count() === 0;
+
+        return view('market.index', ['items' => $items, 'empty' => $empty]);
     }
 }

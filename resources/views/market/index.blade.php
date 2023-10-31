@@ -2,9 +2,27 @@
 
 @section('content')
 <div>
-    @if (count($items) == 0)
-        @include('partials.alert')
-        <div class="flex flex-col justify-center pt-20 items-center">
+    <div class="max-w-4xl mx-auto mt-3">
+        <form action="{{ route('item.search') }}" method="GET">
+            <div class="mb-4 flex gap-2">
+                <input name="search" type="text" class="w-100 p-2 border-2 bg-neutral-800 text-white border-neutral-500 rounded-xl focus:outline-none" placeholder="Search by item name ..." value="{{ isset($search) ? $search : '' }}">
+                <div class="flex justify-start items-center">
+                    <button type="submit" class="py-2 px-3 text-neutral-300 font-semibold rounded-xl border-2 border-neutral-500">
+                        <div class="flex items-center">
+                            <p>
+                                Search
+                            </p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    @if ($empty)
+        <div class="max-w-4xl mx-auto">
+            @include('partials.alert')
+        </div>
+        <div class="flex flex-col justify-center pt-10 items-center">
             <p class="text-2xl font-semibold text-white">No Data</p>
             <img class="w-64 h-64 object-contain" src="images/no_data.png" alt="">
         </div>
@@ -22,6 +40,28 @@
                 </div>
             </a>
         </div>
+    @elseif($items->isEmpty())
+    <div class="max-w-4xl mx-auto">
+        <div class="flex flex-col justify-center pt-2 items-center">
+            <p class="text-xl text-white">No data has found </p>
+        </div>
+        <div class="my-9">
+            <div class="flex justify-start items-center">
+                <a href="{{ route('item.create') }}" class="py-2 px-3 text-neutral-300 font-semibold rounded-lg border-2 border-neutral-500">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-neutral-300 icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 5l0 14"></path>
+                            <path d="M5 12l14 0"></path>
+                         </svg>
+                        <p>
+                            Sell an Item
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
     @else
         <div class="max-w-4xl mx-auto">
             @include('partials.alert')
