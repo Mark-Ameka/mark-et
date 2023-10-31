@@ -5,7 +5,7 @@
     <div class="max-w-4xl mx-auto mt-3">
         <form action="{{ route('item.search') }}" method="GET">
             <div class="mb-4 flex gap-2">
-                <input name="search" type="text" class="w-100 p-2 border-2 bg-neutral-800 text-white border-neutral-500 rounded-xl focus:outline-none" placeholder="Search by item name ..." value="{{ isset($search) ? $search : '' }}">
+                <input name="search" type="text" class="w-100 p-2 border-2 bg-neutral-800 text-white border-neutral-500 rounded-xl focus:outline-none" placeholder="Search by item name ..." value="{{ isset($search) ? $search : '' }}" autocomplete="off">
                 <div class="flex justify-start items-center">
                     <button type="submit" class="py-2 px-3 text-neutral-300 font-semibold rounded-xl border-2 border-neutral-500">
                         <div class="flex items-center">
