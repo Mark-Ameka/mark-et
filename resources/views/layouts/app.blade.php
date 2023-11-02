@@ -12,7 +12,7 @@
     <link rel="icon" href="/images/market.ico">
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    {{-- <link rel="dns-prefetch" href="//fonts.bunny.net"> --}}
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Scripts -->

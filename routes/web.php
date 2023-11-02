@@ -15,17 +15,20 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/home', [MarketItemsController::class, 'index'])->middleware('auth');
-Route::get('/', [MarketItemsController::class, 'index'])->middleware('auth');
+Route::get('/home', [MarketItemsController::class, 'index'])->middleware('preventBack', 'auth');
+Route::get('/', [MarketItemsController::class, 'index'])->middleware('preventBack', 'auth');
 
 Auth::routes();
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth', 'preventBack')->group(function(){
+    // resource routes for user and market_items
     Route::resource('item', \App\Http\Controllers\MarketItemsController::class);
     Route::resource('user', \App\Http\Controllers\UserController::class);
 
+    // search route
     Route::get('/', [MarketItemsController::class, 'search'])->name('item.search');
 
+    // for update user password
     Route::patch('/user/update_pass/{id}', [UserController::class, 'update_pass'])->name('user.update_pass');
     Route::get('/user/update_pass/{id}', [UserController::class, 'update_pass_index'])->name('user.update_pass_index');
 });
