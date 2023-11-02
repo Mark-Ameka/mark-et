@@ -7,11 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('name', 'Mark-et') }}</title>
+
+    <link rel="icon" href="/images/market.ico">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -19,7 +21,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-neutral-800">
-    <div id="app" class="min-h-screen mx-40">
+    <div id="app" class="min-h-screen mx-40 font-poppins">
         @guest
         @else
             @include('layouts.nav')

@@ -6,7 +6,7 @@
         <div x-data="{ isActive: false }" class="relative">
             <div class="inline-flex items-end overflow-hidden rounded-md">
                 <button x-on:click="isActive = !isActive" class="h-full p-2 hover:text-gray-100">
-                    <span class="">{{ Auth::user()->name }}</span>
+                    <span class="">{{ Auth::user()->fname }}</span>
                 </button>
             </div>
 

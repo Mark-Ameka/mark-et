@@ -9,8 +9,12 @@
             @include('partials.alert')
             <h1 class="font-bold text-center my-2 text-xl">Update Profile</h1>
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                <input name="name" type="text" class="w-full p-2 border border-gray-300 rounded" value="{{ $user->name }}" required>
+                <label class="block text-gray-700 text-sm font-bold mb-2">First Name:</label>
+                <input name="name" type="text" class="w-full p-2 border border-gray-300 rounded" value="{{ $user->fname }}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Last Name:</label>
+                <input name="name" type="text" class="w-full p-2 border border-gray-300 rounded" value="{{ $user->lname }}" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Email Address:</label>
