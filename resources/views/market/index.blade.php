@@ -2,16 +2,23 @@
 
 @section('content')
 <div>
-    <div class="max-w-4xl mx-auto mt-3">
+    <div class="pt-3">
         <form action="{{ route('item.search') }}" method="GET">
-            <div class="mb-4 flex gap-2">
-                <input name="search" type="text" class="w-100 p-2 border-2 bg-neutral-800 text-white border-neutral-500 rounded-xl focus:outline-none" placeholder="Search by item name ..." value="{{ isset($search) ? $search : '' }}" autocomplete="off">
+            <div class="relative pb-4 flex gap-2">
+                <input name="search" type="text" class="truncate pr-2 w-100 py-2 pl-11 shadow-lg bg-neutral-800 text-white rounded-xl focus:outline-none" placeholder="Search by item name ..." value="{{ isset($search) ? $search : '' }}" autocomplete="off">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-basket-search absolute top-1.5 left-3 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M17 10l-2 -6"></path>
+                    <path d="M7 10l2 -6"></path>
+                    <path d="M11 20h-3.756a3 3 0 0 1 -2.965 -2.544l-1.255 -7.152a2 2 0 0 1 1.977 -2.304h13.999a2 2 0 0 1 1.977 2.304l-.215 1.227"></path>
+                    <path d="M13.483 12.658a2 2 0 1 0 -2.162 3.224"></path>
+                    <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                    <path d="M20.2 20.2l1.8 1.8"></path>
+                </svg>
                 <div class="flex justify-start items-center">
-                    <button type="submit" class="py-2 px-3 text-neutral-300 font-semibold rounded-xl border-2 border-neutral-500">
+                    <button type="submit" class="py-2 px-3 text-neutral-300 font-semibold rounded-xl shadow-lg">
                         <div class="flex items-center">
-                            <p>
-                                Search
-                            </p>
+                            <p> Search </p>
                         </div>
                     </button>
                 </div>
@@ -26,41 +33,10 @@
             <p class="text-2xl font-semibold text-white">No Data</p>
             <img class="w-64 h-64 object-contain" src="images/no_data.png" alt="">
         </div>
-        <div class="flex justify-center items-center pt-5">
-            <a href="{{ route('item.create') }}" class="py-2 px-3 text-neutral-300 font-semibold rounded-lg border-2 border-neutral-500">
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-neutral-300 icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M12 5l0 14"></path>
-                        <path d="M5 12l14 0"></path>
-                     </svg>
-                    <p>
-                        Sell an Item
-                    </p>
-                </div>
-            </a>
-        </div>
     @elseif($items->isEmpty())
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-col justify-center pt-2 items-center">
-                <p class="text-xl text-white">No data has found </p>
-            </div>
-            <div class="my-9">
-                <div class="flex justify-start items-center">
-                    <a href="{{ route('item.create') }}" class="py-2 px-3 text-neutral-300 font-semibold rounded-lg border-2 border-neutral-500">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-neutral-300 icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 5l0 14"></path>
-                                <path d="M5 12l14 0"></path>
-                            </svg>
-                            <p>
-                                Sell an Item
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <div class="flex flex-col justify-center pt-10 items-center">
+            <p class="text-2xl font-semibold text-white">No data has found</p>
+            <img class="w-64 h-64 object-contain" src="images/no_data.png" alt="">
         </div>
     @else
         <div class="max-w-4xl mx-auto">
@@ -112,22 +88,6 @@
                         </div>
                     @endforeach
                 </div>
-            <div class="my-9">
-                <div class="flex justify-start items-center">
-                    <a href="{{ route('item.create') }}" class="py-2 px-3 text-neutral-300 font-semibold rounded-lg border-2 border-neutral-500">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 text-neutral-300 icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 5l0 14"></path>
-                                <path d="M5 12l14 0"></path>
-                             </svg>
-                            <p>
-                                Sell an Item
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
         </div>
     @endif
 </div>

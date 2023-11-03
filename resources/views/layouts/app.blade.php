@@ -21,14 +21,21 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-neutral-800">
-    <div id="app" class="min-h-screen mx-40 font-poppins">
+    <div id="app" class="min-h-screen font-poppins">
         @guest
         @else
-            @include('layouts.nav')
-        @endguest
-        <main>
-            @yield('content')
-        </main>
+        <div class="lg:flex lg:flex-row">
+            <div class="lg:block hidden">
+                @include('layouts.sticky-nav')
+            </div>
+            <div class="lg:hidden block mx-11">
+                @include('layouts.top-nav')
+            </div>
+            @endguest
+            <main class="flex-grow mx-11">
+                @yield('content')
+            </main>
+        </div>
     </div>
 </body>
 <script src="{{ asset('components.js') }}"></script>
