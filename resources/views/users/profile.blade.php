@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="max-w-[350px] md:max-w-lg mx-auto pt-3 mb-5 md:mb-0">
-        <a type="button" href="{{ url('/home') }}" class="w-full mt-2 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Return</a>
+        <a type="button" href="{{ url('/home') }}" class="w-full mt-2 text-center shadow-lg bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Return</a>
     </div>
 </div>
 
