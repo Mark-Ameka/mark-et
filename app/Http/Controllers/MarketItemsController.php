@@ -80,7 +80,7 @@ class MarketItemsController extends Controller
     {
         $item = MarketItems::findOrFail($id); 
         $item->update($request->all()); 
-        return redirect('/home');
+        return redirect()->back()->with('success', 'Item updated successfully.');
     }
 
     /**

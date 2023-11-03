@@ -1,29 +1,58 @@
-@extends('layouts.app')
+<form method="POST" action="{{ route('user.update_pass', $user->id) }}">
+    @csrf
+    @method('PATCH')
+    <h1 class="font-bold text-center pb-10 text-xl text-white">Password Settings</h1>
 
-@section('content')
-<div class="container mx-auto p-4">
-    <div class="max-w-lg mx-auto bg-white rounded-md p-6">
-        <form method="POST" action="{{ route('user.update_pass', $user->id) }}">
-            @csrf
-            @method('PATCH')
-            @include('partials.alert')
-            <h1 class="font-bold text-center my-2 text-xl">Update Password</h1>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Current Password:</label>
-                <input name="curr_pass" type="password" class="w-full p-2 border border-gray-300 rounded" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">New Password:</label>
-                <input name="password" type="password" class="w-full p-2 border border-gray-300 rounded" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Confirm Password:</label>
-                <input name="password_confirmation" type="password" class="w-full p-2 border border-gray-300 rounded" required>
-            </div>
-            <button type="submit" class="w-full bg-neutral-800 hover:bg-neutral-700 text-white font-bold py-2 px-4 rounded">Update</button>
-        </form>
-        <a type="button" href="{{ route('user.index') }}" class="w-full mt-2 text-center bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Return</a>
+    <label class="text-white pb-2 font-light">Current Password</label>
+    <div class="relative">
+        <input type="password" class="truncate w-full mb-3 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg @error('password') is-invalid @enderror" name="curr_pass" placeholder="Current Password" required>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-cog absolute left-3 top-2.5 text-neutral-300" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 21h-5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10c.564 0 1.074 .234 1.437 .61"></path>
+            <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
+            <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
+            <path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+            <path d="M19.001 15.5v1.5"></path>
+            <path d="M19.001 21v1.5"></path>
+            <path d="M22.032 17.25l-1.299 .75"></path>
+            <path d="M17.27 20l-1.3 .75"></path>
+            <path d="M15.97 17.25l1.3 .75"></path>
+            <path d="M20.733 20l1.3 .75"></path>
+         </svg>
+        @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
-</div>
 
-@endsection
+    <label class="text-white pb-2 font-light">New Password </label>
+    <div class="relative">
+        <input type="password" class="truncate w-full mb-3 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg @error('password') is-invalid @enderror" name="password" placeholder="New Password" required>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-check absolute left-3 top-2.5 text-neutral-300" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v.5"></path>
+            <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
+            <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
+            <path d="M15 19l2 2l4 -4"></path>
+        </svg>
+        @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <label class="text-white pb-2 font-light">Confirm Password </label>
+    <div class="relative">
+        <input type="password" class="truncate w-full mb-3 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg" name="password_confirmation" placeholder="Confirm Password" required>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-check absolute left-3 top-2.5 text-neutral-300" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v.5"></path>
+            <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
+            <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
+            <path d="M15 19l2 2l4 -4"></path>
+        </svg>
+    </div>
+    <button type="submit" class="w-full shadow-lg bg-emerald-900 hover:bg-emerald-800 text-white font-bold py-2 px-4 rounded">Change Password</button>
+</form>

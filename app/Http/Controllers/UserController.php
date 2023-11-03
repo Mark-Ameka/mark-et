@@ -83,11 +83,11 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Profile Updated!');
     }
     
-    public function update_pass_index(Request $request, $id)
-    {
-        $user = User::where('id', Auth::id());
-        return view('users.edit_pass', ['user' => $user])->with('user', Auth::user());
-    }
+    // public function update_pass_index(Request $request, $id)
+    // {
+    //     $user = User::where('id', Auth::id());
+    //     return view('users.edit_pass', ['user' => $user])->with('user', Auth::user());
+    // }
 
     /**
      * Remove the specified resource from storage.

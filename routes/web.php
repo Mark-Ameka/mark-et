@@ -30,6 +30,5 @@ Route::middleware('auth', 'preventBack')->group(function(){
 
     // for update user password
     Route::patch('/user/update_pass/{id}', [UserController::class, 'update_pass'])->name('user.update_pass');
-    Route::get('/user/update_pass/{id}', [UserController::class, 'update_pass_index'])->name('user.update_pass_index');
 });
 

@@ -26,7 +26,7 @@
         @else
         <div class="lg:flex lg:flex-row">
             <div class="lg:block hidden">
-                @include('layouts.sticky-nav')
+                @include('layouts.side-nav')
             </div>
             <div class="lg:hidden block mx-11">
                 @include('layouts.top-nav')
