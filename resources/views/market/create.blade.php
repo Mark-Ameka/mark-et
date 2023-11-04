@@ -22,7 +22,7 @@
 
             <label class="text-white pb-2 font-light">Item Description</label>
             <div class="relative">
-                <textarea name="item_description" rows="5" class="w-full mb-2 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg" autocomplete="off" placeholder="e.g., 'Fresh from south korea'" required></textarea>
+                <textarea name="item_description" rows="5" class="resize-none w-full mb-2 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg" autocomplete="off" placeholder="e.g., 'Fresh from south korea'" required></textarea>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil absolute left-3 top-2.5 text-neutral-300" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"></path>
@@ -45,7 +45,7 @@
                 <div>
                     <label class="text-white pb-2 font-light">Price</label>
                     <div class="relative">
-                        <input name="item_price" type="number" min="1" class="truncate w-full mb-3 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg" autocomplete="off" placeholder="e.g., '120.35'" required>
+                        <input name="item_price" type="number" min="1" step="any" step="0.01" class="truncate w-full mb-3 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg" autocomplete="off" placeholder="e.g., '120.35'" required>
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moneybag absolute left-3 top-2.5 text-neutral-300" width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M9.5 3h5a1.5 1.5 0 0 1 1.5 1.5a3.5 3.5 0 0 1 -3.5 3.5h-1a3.5 3.5 0 0 1 -3.5 -3.5a1.5 1.5 0 0 1 1.5 -1.5z"></path>
