@@ -26,9 +26,11 @@
         @else
         <div class="lg:flex lg:flex-row">
             <div class="lg:block hidden">
-                @include('layouts.side-nav')
+                <aside class="sticky top-0">
+                    @include('layouts.side-nav')
+                </aside>
             </div>
-            <div class="lg:hidden block mx-11">
+            <div class="lg:hidden sticky z-50 top-0 block px-11 shadow-lg bg-neutral-800">
                 @include('layouts.top-nav')
             </div>
             @endguest
