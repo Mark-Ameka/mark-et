@@ -56,15 +56,15 @@
             @include('partials.alert')
             @if (count($items) == 2)
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
-            @elseif(count($items) == 3)
+            @elseif(count($items) >= 3)
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 my-4">
             @else
                 <div class="grid grid-cols-1 gap-4 my-4">
             @endif
                 @foreach ($items as $item)
                     <div class="text-white p-3 shadow-lg rounded-xl min-w-min">
-                        <div class="lg:flex lg:flex-row lg:justify-between items-center">
-                            <div class="flex lg:flex-col justify-center items-baseline">
+                        <div class="md:flex md:flex-row md:justify-between items-center">
+                            <div class="flex md:flex-col justify-center items-baseline">
                                 <h2 class="text-xl font-bold mr-4">{{ $item->item_name }}</h2>
                                 <p>{{ $item->item_description }}</p>
                             </div>
@@ -102,8 +102,8 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="py-4 mb-3 flex justify-center lg:hidden">
-                    <a href="{{ route('item.create') }}" class="flex items-center gap-2 text-white font-medium px-3 py-2 shadow-xl rounded-md">
+                <div class="py-4 flex justify-center lg:hidden">
+                    <a href="{{ route('item.create') }}" class="flex items-center justify-center h-24 gap-2 w-full text-neutral-600 font-medium px-3 py-2 shadow-xl rounded-lg border-2 border-dashed border-neutral-600 hover:text-neutral-500 hover:border-neutral-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-store" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M3 21l18 0"></path>
