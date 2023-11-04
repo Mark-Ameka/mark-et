@@ -3,7 +3,7 @@
 @section('content')
 <div class="max-w-4xl mx-auto md:mt-10">
     <div class="max-w-lg mx-auto">
-        @include('partials.alert');
+        @include('partials.alert')
     </div>
     <div class="md:grid md:grid-cols-2 md:divide-x">
         <div class="p-6">
@@ -59,7 +59,7 @@
             </form>
         </div>
         <div class="p-6">
-            @include('users.edit_pass');
+            @include('users.edit_pass')
         </div>
     </div>
     <div class="max-w-[350px] md:max-w-lg mx-auto pt-3 mb-5 md:mb-0">
