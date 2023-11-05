@@ -1,4 +1,4 @@
-<div class="flex min-h-screen max-w-fit flex-col bg-neutral-800 text-white shadow-lg">
+<div class="flex min-h-screen w-[190px] flex-col bg-neutral-800 text-white shadow-lg">
     <nav class="flex-1">
         <div class="flex justify-center items-center py-3">
             <img class="object-contain h-20 w-20" src="/images/market-logo.png" alt="">

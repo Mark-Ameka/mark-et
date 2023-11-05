@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MarketItems extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'seller_id',
         'item_name',

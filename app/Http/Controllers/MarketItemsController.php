@@ -77,14 +77,6 @@ class MarketItemsController extends Controller
         return view('market.view')->with('item', $item);
     }
 
-    public function mymarket_show($id)
-    {
-        $item = MarketItems::findOrFail($id);
-        $item->seller = User::find($item->seller_id);
-
-        return view('sell.view')->with('item', $item);
-    }
-
     /**
      * Show the form for editing the specified resource.
      */

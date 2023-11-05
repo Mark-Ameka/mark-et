@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\MarketItems;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -42,7 +43,11 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $items = MarketItems::where('seller_id', $id)->get();
+        foreach ($items as $item) {
+            $seller = User::find($item->seller_id);
+        }
+        return view('market.view_profile', ['items' => $items, 'seller' => $seller]);
     }
 
     /**

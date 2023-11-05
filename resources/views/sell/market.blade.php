@@ -69,7 +69,7 @@
                                 <p>{{ $item->item_description }}</p>
                             </div>
                             <div class="flex justify-center">
-                                <a class="text-green-600 font-bold px-2 py-2 md:py-0 rounded-md transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110" href="{{ route('item.mymarket_show', $item->id) }}">
+                                <a class="text-green-600 font-bold px-2 py-2 md:py-0 rounded-md transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110" href="{{ route('item.show', $item->id) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eyeglass" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path d="M8 4h-2l-3 10"></path>
