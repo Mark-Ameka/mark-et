@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('market_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
+            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
             $table->string('item_name');
             $table->string('item_description');
             $table->integer('item_qty');

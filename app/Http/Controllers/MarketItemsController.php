@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\MarketItems;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-
+ 
 class MarketItemsController extends Controller
 {
     /**
@@ -14,11 +15,21 @@ class MarketItemsController extends Controller
      */
     public function index()
     {
-        $id = Auth::id();
-        $items = MarketItems::where('user_id', $id)->get();
-        $empty = MarketItems::where('user_id', $id)->count() === 0;
+        $items = MarketItems::all();
+        foreach ($items as $item) {
+            $item->seller = User::find($item->seller_id);
+        }
+        $empty = MarketItems::count() === 0;
     
         return view('market.index', ['items' => $items, 'empty' => $empty]);
+    }
+
+    public function mymarket_index(){
+        $id = Auth::id();
+        $items = MarketItems::where('seller_id', $id)->get();
+        $empty = MarketItems::where('seller_id', $id)->count() === 0;
+
+        return view('sell.market', ['items' => $items, 'empty' => $empty]);
     }
 
     /**
@@ -45,7 +56,7 @@ class MarketItemsController extends Controller
             return redirect()->back()->with('errors', $validator->errors()->all());
 
         MarketItems::create([
-            'user_id' => Auth::id(),
+            'seller_id' => Auth::id(),
             'item_name' => $request->item_name,
             'item_description' => $request->item_description,
             'item_qty' => $request->item_qty,
@@ -61,7 +72,17 @@ class MarketItemsController extends Controller
     public function show($id)
     {
         $item = MarketItems::findOrFail($id);
+        $item->seller = User::find($item->seller_id);
+
         return view('market.view')->with('item', $item);
+    }
+
+    public function mymarket_show($id)
+    {
+        $item = MarketItems::findOrFail($id);
+        $item->seller = User::find($item->seller_id);
+
+        return view('sell.view')->with('item', $item);
     }
 
     /**
@@ -99,9 +120,26 @@ class MarketItemsController extends Controller
         $id = Auth::id();
         $query = $request->input('search');
 
-        $items = MarketItems::where('user_id', $id)->where('item_name', 'LIKE', '%' . $query . '%')->get();
-        $empty = MarketItems::where('user_id', $id)->count() === 0;
+        $items = MarketItems::where('item_name', 'LIKE', '%' . $query . '%')->get();
+        foreach ($items as $item) {
+            $item->seller = User::find($item->seller_id);
+        }
+        $empty = MarketItems::count() === 0;
 
         return view('market.index', ['items' => $items, 'empty' => $empty]);
+    }
+
+    public function mymarket_search(Request $request)
+    {
+        $id = Auth::id();
+        $query = $request->input('search');
+
+        $items = MarketItems::where('seller_id', $id)->where('item_name', 'LIKE', '%' . $query . '%')->get();
+        foreach ($items as $item) {
+            $item->seller = User::find($item->seller_id);
+        }
+        $empty = MarketItems::where('seller_id', $id)->count() === 0;
+
+        return view('sell.market', ['items' => $items, 'empty' => $empty]);
     }
 }
