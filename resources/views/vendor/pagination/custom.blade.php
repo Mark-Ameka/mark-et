@@ -1,4 +1,16 @@
 @if ($paginator->hasPages())
+<div class="flex flex-col md:flex-row flex-grow justify-between items-center">
+    <div class="mb-2 md:mb-0">
+        <p class="small text-white">
+            {!! __('Showing') !!}
+            <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
+            {!! __('to') !!}
+            <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
+            {!! __('of') !!}
+            <span class="fw-semibold">{{ $paginator->total() }}</span>
+            {!! __('results') !!}
+        </p>
+    </div>
     <ol class="flex justify-center gap-1 text-xs font-medium">
         @if ($paginator->onFirstPage())
             <li class="disabled inline-flex h-8 w-8 items-center justify-center rounded bg-neutral-800 text-white shadow-md">
@@ -55,4 +67,5 @@
             </li>
         @endif
     </ol>
+</div>
 @endif
