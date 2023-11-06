@@ -69,7 +69,7 @@
                     @endif
                         <div class="md:flex md:flex-row md:justify-between">
                             <div class="flex md:flex-col justify-center items-baseline">
-                                <h2 class="text-xl font-bold mr-4">{{ $item->item_name }}</h2>
+                                <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
                                 <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
                                 <div class="flex gap-2 mt-2">
                                     <p class="line-clamp-1">Seller: {{ $item->seller['fname'] }}</p>
@@ -91,7 +91,7 @@
                                 </div>
                                 
                             </div>
-                            <div class="grid grid-cols-2 gap-2 items-center justify-center mt-2">
+                            <div class="grid grid-cols-2 gap-3 items-center justify-center mt-3">
                                 <div class="md:hidden block">
                                     <a href="{{ route('user.show', $item->seller['id']) }}" class="flex justify-center text-white bg-sky-900 rounded-md py-2">
                                         Check Profile

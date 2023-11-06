@@ -54,10 +54,8 @@
     @else
         <div class="max-w-5xl mx-auto">
             @include('partials.alert')
-            @if (count($items) == 2)
+            @if (count($items) >= 2)
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
-            @elseif(count($items) >= 3)
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 my-4">
             @else
                 <div class="grid grid-cols-1 gap-4 my-4">
             @endif
@@ -65,8 +63,8 @@
                     <div class="text-white p-3 shadow-lg rounded-xl min-w-min">
                         <div class="md:flex md:flex-row md:justify-between items-center">
                             <div class="flex md:flex-col justify-center items-baseline">
-                                <h2 class="text-xl font-bold mr-4">{{ $item->item_name }}</h2>
-                                <p>{{ $item->item_description }}</p>
+                                <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
+                                <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
                             </div>
                             <div class="flex justify-center">
                                 <a class="text-green-600 font-bold px-2 py-2 md:py-0 rounded-md transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110" href="{{ route('item.show', $item->id) }}">
