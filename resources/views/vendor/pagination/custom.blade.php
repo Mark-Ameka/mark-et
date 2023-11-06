@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
-<div class="flex flex-col md:flex-row flex-grow justify-between items-center">
-    <div class="mb-2 md:mb-0">
+<div class="flex md:flex-row flex-col flex-grow justify-between items-center gap-3">
+    <div>
         <p class="small text-white">
             {!! __('Showing') !!}
             <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
@@ -34,14 +34,14 @@
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="disabled block h-8 w-8 rounded bg-neutral-800 text-center leading-8 text-white shadow-md hover:bg-neutral-700" aria-disabled="true"><span>{{ $element }}</span></li>
+                <li class="disabled block h-8 w-8 rounded bg-neutral-800 text-center leading-8 text-white shadow-md" aria-disabled="true"><span>{{ $element }}</span></li>
             @endif
 
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="active block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white shadow-md hover:bg-neutral-700" aria-current="page"><span>{{ $page }}</span></li>
+                        <li class="active block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white shadow-md" aria-current="page"><span>{{ $page }}</span></li>
                     @else
                         <li><a href="{{ $url }}" class="block h-8 w-8 rounded bg-neutral-800 text-center leading-8 text-white shadow-md hover:bg-neutral-700">{{ $page }}</a></li>
                     @endif

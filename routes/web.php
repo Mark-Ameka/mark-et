@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarketItemsController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Session;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,13 @@ Route::middleware('auth', 'preventBack')->group(function(){
 
     // for update user password
     Route::patch('/user/update_pass/{id}', [UserController::class, 'update_pass'])->name('user.update_pass');
+
+
+    Route::post('/set_pagination', function(\Illuminate\Http\Request $request) {
+        Session::put('pagination', $request->input('pagination'));
+        return back();
+    })->name('set_pagination');
+
 
 });
 

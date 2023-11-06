@@ -15,21 +15,23 @@ class MarketItemsController extends Controller
      */
     public function index()
     {
-        $items = MarketItems::paginate(9);
+        $pagination = session('pagination', 9);
+        $items = MarketItems::paginate($pagination);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
         }
         $empty = MarketItems::count() === 0;
     
-        return view('market.index', ['items' => $items, 'empty' => $empty]);
+        return view('market.index', ['items' => $items, 'empty' => $empty, 'pagination' => $pagination]);
     }
 
     public function mymarket_index(){
         $id = Auth::id();
-        $items = MarketItems::where('seller_id', $id)->paginate(10);
+        $pagination = session('pagination', 10);
+        $items = MarketItems::where('seller_id', $id)->paginate($pagination);
         $empty = MarketItems::where('seller_id', $id)->count() === 0;
 
-        return view('sell.market', ['items' => $items, 'empty' => $empty]);
+        return view('sell.market', ['items' => $items, 'empty' => $empty, 'pagination' => $pagination]);
     }
 
     /**
@@ -112,13 +114,14 @@ class MarketItemsController extends Controller
         $id = Auth::id();
         $query = $request->input('search');
 
-        $items = MarketItems::where('item_name', 'LIKE', '%' . $query . '%')->paginate(9);
+        $pagination = session('pagination', 9);
+        $items = MarketItems::where('item_name', 'LIKE', '%' . $query . '%')->paginate($pagination);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
         }
         $empty = MarketItems::count() === 0;
 
-        return view('market.index', ['items' => $items, 'empty' => $empty]);
+        return view('market.index', ['items' => $items, 'empty' => $empty, 'pagination' => $pagination]);
     }
 
     public function mymarket_search(Request $request)
@@ -126,12 +129,13 @@ class MarketItemsController extends Controller
         $id = Auth::id();
         $query = $request->input('search');
 
-        $items = MarketItems::where('seller_id', $id)->where('item_name', 'LIKE', '%' . $query . '%')->paginate(10);
+        $pagination = session('pagination', 10);
+        $items = MarketItems::where('seller_id', $id)->where('item_name', 'LIKE', '%' . $query . '%')->paginate($pagination);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
         }
         $empty = MarketItems::where('seller_id', $id)->count() === 0;
 
-        return view('sell.market', ['items' => $items, 'empty' => $empty]);
+        return view('sell.market', ['items' => $items, 'empty' => $empty, 'pagination' => $pagination]);
     }
 }

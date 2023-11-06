@@ -53,7 +53,17 @@
         </div>
     @else
         <div class="max-w-5xl mx-auto">
-            <div class="flex justify-end">
+            <div class="flex md:flex-row flex-col items-center gap-3">
+                @if ($items->hasPages())
+                    <form action="{{ route('set_pagination') }}" method="POST">
+                        @csrf
+                            <select class="cursor-pointer text-white outline-none shadow-md rounded-lg bg-neutral-800 px-3 py-2 border-none" name="pagination" id="pagination" onchange="this.form.submit()">
+                            <option value="10" {{ $pagination == 10 ? 'selected' : '' }}>10</option>
+                            <option value="20" {{ $pagination == 20 ? 'selected' : '' }}>20</option>
+                            <option value="30" {{ $pagination == 30 ? 'selected' : '' }}>30</option>
+                        </select>
+                    </form>
+                @endif
                 {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
             </div>
             @include('partials.alert')
