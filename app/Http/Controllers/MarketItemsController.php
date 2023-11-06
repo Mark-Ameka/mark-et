@@ -15,7 +15,7 @@ class MarketItemsController extends Controller
      */
     public function index()
     {
-        $items = MarketItems::all();
+        $items = MarketItems::paginate(9);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
         }
@@ -26,7 +26,7 @@ class MarketItemsController extends Controller
 
     public function mymarket_index(){
         $id = Auth::id();
-        $items = MarketItems::where('seller_id', $id)->get();
+        $items = MarketItems::where('seller_id', $id)->paginate(10);
         $empty = MarketItems::where('seller_id', $id)->count() === 0;
 
         return view('sell.market', ['items' => $items, 'empty' => $empty]);
@@ -112,7 +112,7 @@ class MarketItemsController extends Controller
         $id = Auth::id();
         $query = $request->input('search');
 
-        $items = MarketItems::where('item_name', 'LIKE', '%' . $query . '%')->get();
+        $items = MarketItems::where('item_name', 'LIKE', '%' . $query . '%')->paginate(9);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
         }
@@ -126,7 +126,7 @@ class MarketItemsController extends Controller
         $id = Auth::id();
         $query = $request->input('search');
 
-        $items = MarketItems::where('seller_id', $id)->where('item_name', 'LIKE', '%' . $query . '%')->get();
+        $items = MarketItems::where('seller_id', $id)->where('item_name', 'LIKE', '%' . $query . '%')->paginate(10);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
         }

@@ -13,6 +13,6 @@ class MarketItemsSeeder extends Seeder
      */
     public function run(): void
     {
-        MarketItems::factory()->times(20)->create();
+        MarketItems::factory()->times(100)->create();
     }
 }

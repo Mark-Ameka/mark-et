@@ -53,6 +53,9 @@
         </div>
     @else
         <div class="max-w-5xl mx-auto">
+            <div class="flex justify-end">
+                {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
+            </div>
             @include('partials.alert')
             @if (count($items) == 2)
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
@@ -130,6 +133,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="md:hidden flex justify-end">
+                    {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
+                </div>
                 <div class="py-4 flex justify-center lg:hidden">
                     <a href="{{ route('item.create') }}" class="flex items-center justify-center h-24 gap-2 w-full text-neutral-600 font-medium px-3 py-2 shadow-xl rounded-lg border-2 border-dashed border-neutral-600 hover:text-neutral-500 hover:border-neutral-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-building-store" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
