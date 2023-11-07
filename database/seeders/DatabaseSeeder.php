@@ -29,6 +29,15 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
+        \App\Models\User::factory()->create([
+            'fname' => 'Kelly',
+            'lname' => 'Cruz',
+            'email' => 'kelly@email.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('kelly123123'),
+            'remember_token' => Str::random(10),
+        ]);
+
         $this->call(UserSeeder::class);
         $this->call(MarketItemsSeeder::class);
     }

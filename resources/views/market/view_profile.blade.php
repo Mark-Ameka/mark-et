@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto lg:mt-40 mt-9">
+    <img src="{{ asset('avatars/' . $seller->avatar) }}" alt="">
     <h1 class="mb-3 text-white font-semibold text-4xl text-center">Full name: {{ $seller->fname }} {{ $seller->lname }}</h1>
     <h1 class="mb-3 text-white font-semibold text-4xl text-center">Email Address: {{ $seller->email }}</h1>
     <h1 class="mb-3 text-white font-semibold text-4xl text-center">Items on Sale: {{ count($items) }}</h1>

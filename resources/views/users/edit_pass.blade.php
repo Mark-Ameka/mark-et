@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('user.update_pass', $user->id) }}">
+<form method="POST" action="{{ route('user.update_pass', $user->id) }}" class="mt-3">
     @csrf
     @method('PATCH')
     <h1 class="font-bold text-center pb-10 text-xl text-white">Password Settings</h1>

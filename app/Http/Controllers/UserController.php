@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\MarketItems;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+use App\Models\User;
+use App\Models\MarketItems;
 use Auth;
 
 class UserController extends Controller
@@ -67,7 +68,24 @@ class UserController extends Controller
             'fname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . Auth::id()],
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $extension = $file->getClientOriginalExtension();
+
+            $filename = time().'.'.$extension;
+
+            $directory = 'avatars';
+            $file->move($directory, $filename);
+
+            if (!(Auth::user()->avatar == 'default.png')) {
+                File::delete(public_path('avatars/' . Auth::user()->avatar));
+            }
+            
+            $validated['avatar'] = $filename;
+        }
 
         User::where('id', Auth::id())->update($validated);
         return redirect()->back()->with('success', 'Profile Updated!');

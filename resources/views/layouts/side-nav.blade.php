@@ -4,6 +4,26 @@
             <img class="object-contain h-20 w-20" src="/images/market-logo.png" alt="">
         </div>
         <ul class="gap-y-2 flex flex-col">
+            
+            <li class="px-2">
+                <a href="{{ route('user.index') }}">
+                    <div class="flex cursor-pointer items-start gap-2 py-2 px-3 hover:bg-neutral-700 rounded-lg">
+                        @if (isset(Auth::user()->avatar))
+                            <img class="rounded-full object-cover h-12 w-12 border-2" src="{{ asset('avatars/' . Auth::user()->avatar) }}" alt="Profile Picture">
+                        @endif
+                        <div class="flex flex-col gap-1">
+                            <p>{{ Auth::user()->fname }}</p>
+                            <div class="flex gap-1 items-center">
+                                <div class="h-4 w-1 rounded-full bg-white"></div>
+                                <p class="text-xs line-clamp-1"> Selling: 
+                                    {{ count(\App\Models\MarketItems::where('seller_id', Auth::id())->get()) }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
             <li class="px-2">
                 <a href="{{ url('/home') }}">
                     <div class="flex cursor-pointer items-center gap-2 py-2 px-3 hover:bg-neutral-700 rounded-lg">
@@ -15,20 +35,6 @@
                             <path d="M14 4h6v4h-6z"></path>
                          </svg>
                         Public Market
-                    </div>
-                </a>
-            </li>
-
-            <li class="px-2">
-                <a href="{{ route('user.index') }}">
-                    <div class="flex cursor-pointer items-center gap-2 py-2 px-3 hover:bg-neutral-700 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                            <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                            <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-                        </svg>
-                        {{ Auth::user()->fname }}
                     </div>
                 </a>
             </li>
