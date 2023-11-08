@@ -10,6 +10,7 @@ if (document.getElementById("myAlert") != null) {
 document.addEventListener("DOMContentLoaded", function () {
     const uploadImage = document.getElementById("upload-image");
     const chosenImage = document.getElementById("chosen-image");
+    const showButton = document.getElementById("show-button");
 
     if (uploadImage != null && chosenImage != null) {
         uploadImage.addEventListener("change", function (event) {
@@ -23,6 +24,32 @@ document.addEventListener("DOMContentLoaded", function () {
             if (file) {
                 reader.readAsDataURL(file);
             }
+            showButton.disabled = false;
         });
     }
+});
+
+// checkbox for basic conf
+document.addEventListener("DOMContentLoaded", function () {
+    document
+        .getElementById("enable-change-account")
+        .addEventListener("change", function () {
+            document.getElementById("fname").disabled = !this.checked;
+            document.getElementById("lname").disabled = !this.checked;
+            document.getElementById("email").disabled = !this.checked;
+            document.getElementById("change-account").disabled = !this.checked;
+        });
+});
+
+// checkbox for password
+document.addEventListener("DOMContentLoaded", function () {
+    document
+        .getElementById("enable-change-password")
+        .addEventListener("change", function () {
+            document.getElementById("curr_pass").disabled = !this.checked;
+            document.getElementById("password").disabled = !this.checked;
+            document.getElementById("password_confirmation").disabled =
+                !this.checked;
+            document.getElementById("change-password").disabled = !this.checked;
+        });
 });

@@ -68,26 +68,53 @@ class UserController extends Controller
             'fname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . Auth::id()],
+        ]);
+
+        User::where('id', Auth::id())->update($validated);
+        return redirect()->back()->with('success', 'Profile Updated!');
+    }
+
+    public function update_profile_pic(Request $request, $id)
+    {
+        $validated = $request->validate([
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->hasFile('avatar')) {
-            $file = $request->file('avatar');
-            $extension = $file->getClientOriginalExtension();
+        $file = $request->file('avatar');
+        $extension = $file->getClientOriginalExtension();
 
-            $filename = time().'.'.$extension;
+        $filename = time().'.'.$extension;
 
-            $directory = 'avatars';
-            $file->move($directory, $filename);
+        $directory = 'avatars';
+        $file->move($directory, $filename);
 
-            if (!(Auth::user()->avatar == 'default.png')) {
-                File::delete(public_path('avatars/' . Auth::user()->avatar));
-            }
-            
+        if (!(Auth::user()->avatar == 'default.png')) {
+            File::delete(public_path('avatars/' . Auth::user()->avatar));
+        }
+        
+        $validated['avatar'] = $filename;
+
+        User::where('id', Auth::id())->update(['avatar' => $validated['avatar']]);
+        return redirect()->back()->with('success', 'Profile Updated!');
+    }
+
+    public function remove_profile_pic(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if (!(Auth::user()->avatar == 'default.png')) {
+            $filename = 'default.png';
+    
+            File::delete(public_path('avatars/' . Auth::user()->avatar));
+    
             $validated['avatar'] = $filename;
+        } else{
+            return redirect()->back()->with('success', 'No profile!');            
         }
 
-        User::where('id', Auth::id())->update($validated);
+        User::where('id', Auth::id())->update(['avatar' => $validated['avatar']]);
         return redirect()->back()->with('success', 'Profile Updated!');
     }
 

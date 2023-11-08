@@ -37,6 +37,10 @@ Route::middleware('auth', 'preventBack')->group(function(){
     // for update user password
     Route::patch('/user/update_pass/{id}', [UserController::class, 'update_pass'])->name('user.update_pass');
 
+    // for update user profile
+    Route::patch('/user/update_profile_pic/{id}', [UserController::class, 'update_profile_pic'])->name('user.update_profile_pic');
+    Route::patch('/user/remove_profile_pic/{id}', [UserController::class, 'remove_profile_pic'])->name('user.remove_profile_pic');
+
 
     Route::post('/set_pagination', function(\Illuminate\Http\Request $request) {
         Session::put('pagination', $request->input('pagination'));
