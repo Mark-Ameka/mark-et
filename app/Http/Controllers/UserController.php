@@ -19,8 +19,12 @@ class UserController extends Controller
      */
     public function index()
     {
+        $is_default = true;
         $user = User::where('id', Auth::id());
-        return view('users.profile', ['user' => $user])->with('user', Auth::user());
+        if (Auth::user()->avatar != 'default.png') {
+            $is_default = false;
+        }
+        return view('users.profile', ['user' => $user, 'is_default' => $is_default])->with('user', Auth::user());
     }
 
     /**
@@ -88,7 +92,7 @@ class UserController extends Controller
         $directory = 'avatars';
         $file->move($directory, $filename);
 
-        if (!(Auth::user()->avatar == 'default.png')) {
+        if (Auth::user()->avatar != 'default.png') {
             File::delete(public_path('avatars/' . Auth::user()->avatar));
         }
         
@@ -104,14 +108,12 @@ class UserController extends Controller
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if (!(Auth::user()->avatar == 'default.png')) {
+        if (Auth::user()->avatar != 'default.png') {
             $filename = 'default.png';
     
             File::delete(public_path('avatars/' . Auth::user()->avatar));
     
             $validated['avatar'] = $filename;
-        } else{
-            return redirect()->back()->with('success', 'No profile!');            
         }
 
         User::where('id', Auth::id())->update(['avatar' => $validated['avatar']]);
