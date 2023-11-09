@@ -11,8 +11,8 @@
                         @if (isset(Auth::user()->avatar))
                             <img class="rounded-full object-cover h-12 w-12 border-2" src="{{ asset('avatars/' . Auth::user()->avatar) }}" alt="Profile Picture">
                         @endif
-                        <div class="flex flex-col gap-1">
-                            <p>{{ Auth::user()->fname }}</p>
+                        <div class="flex flex-col gap-1 truncate">
+                            <p class="truncate">{{ Auth::user()->fname }}</p>
                             <div class="flex gap-1 items-center">
                                 <div class="h-4 w-1 rounded-full bg-white"></div>
                                 <p class="text-xs line-clamp-1"> Selling: 

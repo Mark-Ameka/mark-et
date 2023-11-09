@@ -67,13 +67,15 @@
                 {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
             </div>
             @include('partials.alert')
-            @if (count($items) >= 2)
+            @if (count($items) == 2)
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+            @elseif(count($items) >= 3)
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 my-4">
             @else
                 <div class="grid grid-cols-1 gap-4 my-4">
             @endif
                 @foreach ($items as $item)
-                    <div class="text-white p-3 shadow-lg rounded-xl min-w-min">
+                    <div class="text-white p-3 shadow-lg rounded-xl">
                         <div class="md:flex md:flex-row md:justify-between items-center">
                             <div class="flex md:flex-col justify-center items-baseline">
                                 <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>

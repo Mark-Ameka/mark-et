@@ -48,14 +48,15 @@ class MarketItemsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'item_name' => 'required',
-            'item_description' => 'required',
+            'item_name' => 'required|string|max:50',
+            'item_description' => 'required|string|max:200',
             'item_qty' => 'required',
             'item_price' => 'required',
         ]);
 
-        if ($validator->fails())
-            return redirect()->back()->with('errors', $validator->errors()->all());
+        if ($validator->fails()){
+            return redirect()->back()->with('errors', $validator->errors());
+        }
 
         MarketItems::create([
             'seller_id' => Auth::id(),
@@ -93,8 +94,19 @@ class MarketItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = MarketItems::findOrFail($id); 
-        $item->update($request->all()); 
+        $item = MarketItems::findOrFail($id);
+        $validator = Validator::make($request->all(),[
+            'item_name' => 'required|string|max:50',
+            'item_description' => 'required|string|max:200',
+            'item_qty' => 'required',
+            'item_price' => 'required',
+        ]);
+
+        if ($validator->fails()){
+            return redirect()->back()->with('errors', $validator->errors()->all());
+        }
+        
+        $item->update($validator); 
         return redirect()->back()->with('success', 'Item updated successfully.');
     }
 
