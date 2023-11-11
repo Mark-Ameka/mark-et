@@ -28,7 +28,9 @@
                 <path d="M16.191 3.412a1 1 0 0 1 1.291 -.288l.106 .067l2.75 2a1 1 0 0 1 -1.07 1.685l-.106 -.067l-2.75 -2a1 1 0 0 1 -.22 -1.397z" stroke-width="0" fill="currentColor"></path>
              </svg>
             <span class="block sm:inline"> 
-                {{ session()->get('errors') }}
+                @foreach ($errors->all() as $error)
+                    <strong>{{ $error }}</strong> <br>
+                @endforeach
             </span>
         </div>
     </div>

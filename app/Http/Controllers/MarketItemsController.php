@@ -16,7 +16,7 @@ class MarketItemsController extends Controller
     public function index()
     {
         $pagination = session('pagination', 9);
-        $items = MarketItems::paginate($pagination);
+        $items = MarketItems::where('item_qty', '!=', 0)->paginate($pagination);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
         }
@@ -106,7 +106,7 @@ class MarketItemsController extends Controller
             return redirect()->back()->with('errors', $validator->errors()->all());
         }
         
-        $item->update($validator); 
+        $item->update($request->all()); 
         return redirect()->back()->with('success', 'Item updated successfully.');
     }
 

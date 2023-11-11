@@ -5,8 +5,6 @@ if (document.getElementById("myAlert") != null) {
 }
 
 //profile pic
-
-//profile pic
 document.addEventListener("DOMContentLoaded", function () {
     const uploadImage = document.getElementById("upload-image");
     const chosenImage = document.getElementById("chosen-image");

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto lg:mt-40 mt-9">
+    @include('partials.alert')
     <h1 class="mb-3 text-white font-semibold text-4xl text-center">Check Product</h1>
     <div class="flex md:hidden justify-center">
         <table class="overflow-x-auto text-white table-auto">
@@ -48,7 +49,15 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div>  
+    @if(url()->previous() != url('/my_market'))
+        <form action="{{ route('order.add_order', $item->id) }}" method="POST">
+            @csrf
+            @method('PATCH')
+            <input type="integer" name="total_quantity">
+            <button type="submit" class="text-white">Order</button>
+        </form>
+    @endif
     <a type="button" href="{{ url()->previous() }}" class="w-full mt-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
 </div>
 @endsection

@@ -21,7 +21,7 @@ class MarketItemsFactory extends Factory
     public function definition(): array
     {
         return [
-            'seller_id' => $this->faker->numberBetween(1, 5), // Assuming there are 10 sellers
+            'seller_id' => $this->faker->numberBetween(1, 2), // Assuming there are 10 sellers
             'item_name' => $this->faker->word(2, true),
             'item_description' => $this->faker->sentence(3),
             'item_qty' => $this->faker->numberBetween(1, 100),

@@ -75,7 +75,11 @@
                 <div class="grid grid-cols-1 gap-4 my-4">
             @endif
                 @foreach ($items as $item)
-                    <div class="text-white p-3 shadow-lg rounded-xl">
+                    @if ($item->item_qty == 0)
+                        <div class="text-white p-3 shadow-lg rounded-xl border-2 border-red-800">
+                    @else
+                        <div class="text-white p-3 shadow-lg rounded-xl">
+                    @endif
                         <div class="md:flex md:flex-row md:justify-between items-center">
                             <div class="flex md:flex-col justify-center items-baseline">
                                 <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
