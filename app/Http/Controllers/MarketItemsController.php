@@ -15,7 +15,7 @@ class MarketItemsController extends Controller
      */
     public function index()
     {
-        $pagination = session('pagination', 9);
+        $pagination = session('pagination', 10);
         $items = MarketItems::where('item_qty', '!=', 0)->paginate($pagination);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);
@@ -126,7 +126,7 @@ class MarketItemsController extends Controller
         $id = Auth::id();
         $query = $request->input('search');
 
-        $pagination = session('pagination', 9);
+        $pagination = session('pagination', 10);
         $items = MarketItems::where('item_name', 'LIKE', '%' . $query . '%')->paginate($pagination);
         foreach ($items as $item) {
             $item->seller = User::find($item->seller_id);

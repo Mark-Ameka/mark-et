@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\MarketItems;
 use App\Models\Orders;
+use App\Models\User;
 use Auth;
 
 class OrderController extends Controller
@@ -16,13 +17,19 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Orders::where('buyer_id', Auth::id())->get();
+        $is_pending = Orders::where('buyer_id', Auth::id())->where('pending', 1)->first();
+        $is_notpending = Orders::where('buyer_id', Auth::id())->where('pending', 0)->first();
+        
         foreach ($orders as $order) {
             $order->items = MarketItems::find($order->item_id);
+            $order->seller = User::find($order->items['seller_id']);
         }
-        $empty = Orders::where('buyer_id', Auth::id())
-                        ->where('pending', 1)
-                        ->count() === 0;
-        return view('orders.index', ['orders' => $orders, 'empty' => $empty]);
+        $empty = Orders::where('buyer_id', Auth::id())->count() === 0;
+        return view('orders.index', ['orders' => $orders, 
+                                    'empty' => $empty, 
+                                    'is_pending' => $is_pending, 
+                                    'is_notpending' => $is_notpending
+                                    ]);
     }
 
     /**
@@ -84,6 +91,12 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Received');
     }
 
+    public function clear_all(){
+        Orders::where('buyer_id', Auth::id())->where('pending', 0)->delete();
+    
+        return redirect()->back()->with('success', 'Received Items Cleared');
+    }
+    
     /**
      * Display the specified resource.
      */

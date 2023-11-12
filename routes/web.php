@@ -47,6 +47,7 @@ Route::middleware('auth', 'preventBack')->group(function(){
     Route::patch('/order/add_order/{id}', [OrderController::class, 'add_order'])->name('order.add_order');
     Route::patch('/order/completed/{id}', [OrderController::class, 'completed'])->name('order.completed');
     Route::delete('/order/cancel/{id}', [OrderController::class, 'cancel_order'])->name('order.cancel_order');
+    Route::post('/order/clear', [OrderController::class, 'clear_all'])->name('order.clear_all');
 
     // for pagination
     Route::post('/set_pagination', function(\Illuminate\Http\Request $request) {
