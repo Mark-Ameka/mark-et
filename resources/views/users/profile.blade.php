@@ -7,7 +7,7 @@
             @include('partials.alert')
         </div>
         {{-- Cover --}}
-        <div class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-r from-purple-500 to-pink-500"></div>
+        <div class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-r from-purple-500"></div>
     
         {{-- Include "enctype="multipart/form-data" for handling files --}}
         <div class="absolute -bottom-32 left-7">

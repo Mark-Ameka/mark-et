@@ -76,36 +76,30 @@
             @endif
                 @foreach ($items as $item)
                     @if ($item->seller['id'] == Auth::id())
-                        <div class="text-white p-3 shadow-lg rounded-xl min-w-min border-2 border-yellow-300">
+                        <div class="text-white shadow-lg rounded-xl min-w-min border-2 border-yellow-300">
                     @else
-                        <div class="text-white p-3 shadow-lg rounded-xl min-w-min">
+                        <div class="text-white shadow-lg rounded-xl min-w-min">
                     @endif
                         <div class="md:flex md:flex-row md:justify-between">
-                            <div class="flex md:flex-col justify-center items-baseline">
+                            <div class="flex md:flex-col justify-center items-baseline p-3">
                                 <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
                                 <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
                                 <div class="flex gap-2 mt-2">
                                     <p class="line-clamp-1">Seller: {{ $item->seller['fname'] }}</p>
                                     {{-- Button for view profile --}}
-                                    @if ($item->seller['id'] == Auth::id())
-                        
-                                    @else
+                                    @if ($item->seller['id'] != Auth::id())
                                         <div class="hidden md:block">
-                                            <a href="{{ route('user.show', $item->seller['id']) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-hexagon text-sky-500 transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z"></path>
-                                                    <path d="M6.201 18.744a4 4 0 0 1 3.799 -2.744h4a4 4 0 0 1 3.798 2.741"></path>
-                                                    <path d="M19.875 6.27c.7 .398 1.13 1.143 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z"></path>
-                                                </svg>
+                                            <a href="{{ route('user.show', $item->seller['id']) }}" class="text-blue-400">
+                                                View Profile
                                             </a>
                                         </div>
                                     @endif
                                 </div>
-                                
                             </div>
+
+                            {{-- Mobile --}}
                             @if ($item->seller['id'] == Auth::id())
-                                <div class="flex justify-end items-center py-2 mr-2">
+                                <div class="flex justify-end items-center py-3 px-2 mr-2">
                                     <div class="block md:hidden text-yellow-300 font-bold">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-license" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -116,7 +110,7 @@
                                     </div>
                                 </div>
                             @else
-                                <div class="grid grid-cols-2 gap-3 items-center justify-center mt-3">
+                                <div class="grid grid-cols-2 p-3 gap-3 items-center justify-center">
                                     <div class="md:hidden block">
                                         <a href="{{ route('user.show', $item->seller['id']) }}" class="flex justify-center text-white bg-sky-900 rounded-md py-2">
                                             Check Profile
@@ -129,10 +123,13 @@
                                     </div>
                                 </div>
                             @endif
-                            <div class="flex justify-center">
+                            {{-- End Mobile --}}
+
+                            {{-- Web --}}
+                            <div class="flex">
                                 {{-- View item --}}
                                 @if ($item->seller['id'] == Auth::id())
-                                    <div class="hidden md:block text-yellow-300 font-bold px-2 py-2 md:py-0 rounded-md">
+                                    <div class="hidden md:block text-yellow-300 font-bold px-3 py-3 md:py-0 rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-license" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"></path>
@@ -141,18 +138,15 @@
                                         </svg>
                                     </div>
                                 @else
-                                    <a href="{{ route('item.show', $item->id) }}" class="hidden md:block text-green-600 font-bold px-2 py-2 md:py-0 rounded-md transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eyeglass" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <a href="{{ route('item.show', $item->id) }}" class="hidden md:flex items-center hover:bg-green-800 hover:text-white rounded-tl-none rounded-bl-none text-green-600 font-bold px-2 py-2 md:py-0 rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M8 4h-2l-3 10"></path>
-                                            <path d="M16 4h2l3 10"></path>
-                                            <path d="M10 16l4 0"></path>
-                                            <path d="M21 16.5a3.5 3.5 0 0 1 -7 0v-2.5h7v2.5"></path>
-                                            <path d="M10 16.5a3.5 3.5 0 0 1 -7 0v-2.5h7v2.5"></path>
+                                            <path d="M9 6l6 6l-6 6"></path>
                                         </svg>
                                     </a>
                                 @endif
                             </div>
+                            {{-- Web --}}
                         </div>
                     </div>
                 @endforeach
