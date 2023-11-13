@@ -48,11 +48,16 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $items = MarketItems::where('seller_id', $id)->get();
+        $pagination = session('pagination', 10);
+
+        $items = MarketItems::where('seller_id', $id)->paginate($pagination);
+
+        $count_sell = MarketItems::where('seller_id', $id)->get();
+
         foreach ($items as $item) {
             $seller = User::find($item->seller_id);
         }
-        return view('market.view_profile', ['items' => $items, 'seller' => $seller]);
+        return view('market.view_profile', ['items' => $items, 'seller' => $seller, 'pagination' => $pagination, 'count_sell' => $count_sell]);
     }
 
     /**

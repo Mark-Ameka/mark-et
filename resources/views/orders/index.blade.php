@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
+<div class="my-4">
     <div class="max-w-4xl mx-auto">
         @include('partials.alert')
     </div>
-    <h1 class="text-white text-3xl font-semibold">Pending Orders</h1>
+    <h1 class="text-white text-2xl font-semibold">Pending Orders</h1>
     @if ($is_pending)
         <div class="overflow-x-auto flex justify-center">
             <table class="min-w-full divide-y-2 divide-gray-200 text-sm text-white">
@@ -25,7 +25,12 @@
                                 <td class="whitespace-nowrap py-2">{{ $order->items['item_name'] }}</td>
                                 <td class="whitespace-nowrap py-2">{{ $order->total_quantity }}</td>
                                 <td class="whitespace-nowrap py-2">{{ $order->total_amount }}</td>
-                                <td class="whitespace-nowrap py-2">{{ $order->seller['fname'] }}</td>
+                                <td class="whitespace-nowrap py-2">
+                                    {{ $order->seller['fname'] }}
+                                    <a href="{{ route('user.show', $order->seller['id']) }}" class="underline text-blue-300">
+                                        Visit Profile
+                                    </a>
+                                </td>
                                 <td class="whitespace-nowrap py-2 flex gap-2">
                                     <form action="{{ route('order.completed', $order->id) }}" method="POST">
                                         @csrf
@@ -45,11 +50,14 @@
             </table>
         </div>
     @else
-        <h1 class="text-white">Empty</h1>
+        <div class="flex flex-col justify-center py-10 items-center">
+            <p class="text-2xl font-light text-white">No Pending Orders yet</p>
+            <img class="w-40 h-4w-40 object-contain" src="images/no_data.png" alt="">
+        </div>
     @endif
 
     <div class="flex gap-2 items-center">
-        <h1 class="text-white text-3xl font-semibold">Recieved Orders</h1>
+        <h1 class="text-white text-2xl font-semibold">Recieved Orders</h1>
         @if ($is_notpending)
             <form action="{{ route('order.clear_all') }}" method="POST">
                 @csrf
@@ -76,7 +84,12 @@
                                 <td class="whitespace-nowrap py-2">{{ $order->items['item_name'] }}</td>
                                 <td class="whitespace-nowrap py-2">{{ $order->total_quantity }}</td>
                                 <td class="whitespace-nowrap py-2">{{ $order->total_amount }}</td>
-                                <td class="whitespace-nowrap py-2">{{ $order->seller['fname'] }}</td>
+                                <td class="whitespace-nowrap py-2">
+                                    {{ $order->seller['fname'] }}
+                                    <a href="{{ route('user.show', $order->seller['id']) }}" class="underline text-blue-300">
+                                        Visit Profile
+                                    </a>
+                                </td>
                             </tr>
                         @endif
                     @endforeach
@@ -84,7 +97,10 @@
             </table>
         </div>
     @else
-        <h1 class="text-white">Empty</h1>
+        <div class="flex flex-col justify-center py-10 items-center">
+            <p class="text-2xl font-light text-white">No Received Orders yet</p>
+            <img class="w-40 h-4w-40 object-contain" src="images/no_data.png" alt="">
+        </div>  
     @endif
 </div>
 @endsection
