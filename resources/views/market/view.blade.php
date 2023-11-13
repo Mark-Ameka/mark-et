@@ -65,6 +65,6 @@
             <button type="submit" class="w-full text-white px-3 py-2 rounded-md shadow-lg bg-emerald-900 hover:bg-emerald-800">Order</button>
         </form>
     @endif
-    <a type="button" href="{{ url()->previous() }}" class="w-full mt-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
+    <a type="button" href="{{ url('/home') }}" class="w-full mt-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
 </div>
 @endsection
