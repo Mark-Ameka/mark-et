@@ -67,49 +67,30 @@
                 {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
             </div>
             @include('partials.alert')
-            @if (count($items) == 2)
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
-            @elseif(count($items) >= 3)
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 my-4">
+            @if (count($items) >= 2)
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
             @else
                 <div class="grid grid-cols-1 gap-4 my-4">
             @endif
                 @foreach ($items as $item)
-                    @if ($item->seller['id'] == Auth::id())
-                        <div class="text-white shadow-lg rounded-xl min-w-min border-2 border-yellow-300">
-                    @else
+                    @if ($item->seller_id != Auth::id())
                         <div class="text-white shadow-lg rounded-xl min-w-min">
-                    @endif
-                        <div class="md:flex md:flex-row md:justify-between">
-                            <div class="flex md:flex-col justify-center items-baseline p-3">
-                                <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
-                                <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
-                                <div class="flex gap-2 mt-2">
-                                    <p class="line-clamp-1">Seller: {{ $item->seller['fname'] }}</p>
-                                    {{-- Button for view profile --}}
-                                    @if ($item->seller['id'] != Auth::id())
+                            <div class="md:flex md:flex-row md:justify-between">
+                                <div class="flex md:flex-col justify-center items-baseline p-3">
+                                    <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
+                                    <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
+                                    <div class="flex gap-2 mt-2">
+                                        <p>Seller: {{ $item->seller['fname'] }}</p>
+                                        {{-- Button for view profile --}}
                                         <div class="hidden md:block">
                                             <a href="{{ route('user.show', $item->seller['id']) }}" class="text-blue-400">
-                                                View Profile
+                                                Visit Profile
                                             </a>
                                         </div>
-                                    @endif
-                                </div>
-                            </div>
-
-                            {{-- Mobile --}}
-                            @if ($item->seller['id'] == Auth::id())
-                                <div class="flex justify-end items-center py-3 px-2 mr-2">
-                                    <div class="block md:hidden text-yellow-300 font-bold">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-license" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"></path>
-                                            <path d="M9 7l4 0"></path>
-                                            <path d="M9 11l4 0"></path>
-                                        </svg>
                                     </div>
                                 </div>
-                            @else
+
+                                {{-- Mobile --}}
                                 <div class="grid grid-cols-2 p-3 gap-3 items-center justify-center">
                                     <div class="md:hidden block">
                                         <a href="{{ route('user.show', $item->seller['id']) }}" class="flex justify-center text-white bg-sky-900 rounded-md py-2">
@@ -122,33 +103,22 @@
                                         </a>
                                     </div>
                                 </div>
-                            @endif
-                            {{-- End Mobile --}}
+                                {{-- End Mobile --}}
 
-                            {{-- Web --}}
-                            <div class="flex">
-                                {{-- View item --}}
-                                @if ($item->seller['id'] == Auth::id())
-                                    <div class="hidden md:block text-yellow-300 font-bold px-3 py-3 md:py-0 rounded-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-license" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"></path>
-                                            <path d="M9 7l4 0"></path>
-                                            <path d="M9 11l4 0"></path>
-                                        </svg>
-                                    </div>
-                                @else
+                                {{-- Web --}}
+                                <div class="flex">
+                                    {{-- View item --}}
                                     <a href="{{ route('item.show', $item->id) }}" class="hidden md:flex items-center hover:bg-green-800 hover:text-white rounded-tl-none rounded-bl-none text-green-600 font-bold px-2 py-2 md:py-0 rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M9 6l6 6l-6 6"></path>
                                         </svg>
                                     </a>
-                                @endif
+                                </div>
+                                {{-- Web --}}
                             </div>
-                            {{-- Web --}}
                         </div>
-                    </div>
+                    @endif
                 @endforeach
                 <div class="md:hidden flex justify-end">
                     {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}

@@ -70,7 +70,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <a type="button" href="{{ url()->previous() }}" class="w-full mt-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
+            <a type="button" href="{{ url()->previous() }}" class="w-full my-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
         </div>
     </div>
 </div>
