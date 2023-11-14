@@ -12,9 +12,9 @@
         <div class="overflow-x-auto my-3 grid">
             <table class="divide-y-2 divide-neutral-600">
                 <thead class="text-neutral-100">
-                    <th class="whitespace-nowrap px-4 py-2 font-medium">Avatar</th>
                     <th class="whitespace-nowrap py-2 font-medium">Item Name</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Item Description</th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium">Item Price</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Total Quantity</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Total Amount</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Seller</th>
@@ -24,11 +24,9 @@
                     @foreach ($orders as $order)
                         @if ($order->pending == 1)
                             <tr class="text-neutral-300">
-                                <td class="whitespace-nowrap px-4 py-2">
-                                    <img class="h-8 w-8" src="{{ asset('avatars/' . $order->seller['avatar']) }}" alt="">
-                                </td>
                                 <td class="whitespace-nowrap py-2">{{ $order->items['item_name'] }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">{{ $order->items['item_description'] }}</td>
+                                <td class="whitespace-nowrap px-4 py-2">{{ $order->items['item_price'] }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">{{ $order->total_quantity }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">{{ $order->total_amount }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">
@@ -80,6 +78,7 @@
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Avatar</th>
                     <th class="whitespace-nowrap py-2 font-medium">Item Name</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Item Description</th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium">Item Price</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Total Quantity</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Total Amount</th>
                     <th class="whitespace-nowrap px-4 py-2 font-medium">Seller</th>
@@ -94,6 +93,7 @@
                                 </td>
                                 <td class="whitespace-nowrap py-2">{{ $order->items['item_name'] }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">{{ $order->items['item_description'] }}</td>
+                                <td class="whitespace-nowrap px-4 py-2">{{ $order->items['item_price'] }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">{{ $order->total_quantity }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">{{ $order->total_amount }}</td>
                                 <td class="whitespace-nowrap px-4 py-2">
