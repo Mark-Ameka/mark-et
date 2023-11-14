@@ -51,3 +51,14 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("change-password").disabled = !this.checked;
         });
 });
+
+// dominant color
+document.addEventListener("DOMContentLoaded", function () {
+    var img = document.getElementById("chosen-image");
+    var container = document.getElementById("container-cover");
+
+    var colorThief = new ColorThief();
+    var dominantColor = colorThief.getColor(img);
+
+    container.style.backgroundColor = "rgb(" + dominantColor.join(",") + ")";
+});

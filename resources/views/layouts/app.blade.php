@@ -40,5 +40,9 @@
         </div>
     </div>
 </body>
+{{-- Color Thief --}}
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.min.js"></script>
+
+{{-- Custom JS --}}
 <script src="{{ asset('components.js') }}"></script>
 </html>
