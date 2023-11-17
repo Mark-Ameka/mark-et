@@ -18,6 +18,37 @@ class MarketItemsFactory extends Factory
 
     protected $model = MarketItems::class;
 
+    public function generate_countries() {
+        $countries = [
+            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+            "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+            "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
+            "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+            "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
+            "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+            "Cameroon", "Canada", "Central African Republic", "Chad", "Chile",
+            "China", "Colombia", "Comoros", "Congo", "Costa Rica",
+            "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark",
+            "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+            "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini",
+            "Ethiopia", "Fiji", "Finland", "France", "Gabon",
+            "Gambia", "Georgia", "Germany", "Ghana", "Greece",
+            "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
+            "Haiti", "Honduras", "Hungary", "Iceland", "India",
+            "Indonesia", "Iran", "Iraq", "Ireland", "Israel",
+            "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan",
+            "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo",
+            "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon",
+            "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania",
+            "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
+            "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius",
+        ];
+    
+        $random_countries = $countries[array_rand($countries)];
+    
+        return 'Imported from'. ' ' . $random_countries;
+    }
+
     public function definition(): array
     {
         $items = [
@@ -45,8 +76,8 @@ class MarketItemsFactory extends Factory
 
         return [
             'seller_id' => $this->faker->numberBetween(1, 7), // Assuming there are 10 sellers
-            'item_name' => $this->faker->unique()->randomElement($items),
-            'item_description' => $this->faker->sentence(3),
+            'item_name' => $this->faker->randomElement($items),
+            'item_description' => $this->generate_countries(),
             'item_qty' => $this->faker->numberBetween(30, 500),
             'item_price' => $this->faker->randomFloat(2, 1, 1000), // Generating a random float between 1 and 1000
         ];
