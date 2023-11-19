@@ -7,7 +7,8 @@
             @include('partials.alert')
         </div>
         
-        <div class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-r from-red-500"></div>
+        {{-- <div class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-r from-red-500"></div> --}}
+        <div id="container-cover" class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-l from-neutral-800"></div>
     
         <div class="absolute -bottom-32 left-7">
             <div class="flex gap-4 items-center flex-grow">

@@ -74,7 +74,7 @@
             @endif
                 @foreach ($items as $item)
                     @if ($item->seller_id != Auth::id())
-                        <div class="text-white shadow-lg rounded-xl min-w-min">
+                        <div class="text-white shadow-lg rounded-lg min-w-min">
                             <div class="md:flex md:flex-row md:justify-between">
                                 <div class="flex p-2 items-center gap-3">
                                     <img class="h-28 w-28 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
@@ -111,7 +111,7 @@
                                 {{-- Web --}}
                                 <div class="flex">
                                     {{-- View item --}}
-                                    <a href="{{ route('item.show', $item->id) }}" class="hidden md:flex items-center hover:bg-green-800 hover:text-white rounded-tl-none rounded-bl-none text-green-600 font-bold px-2 py-2 md:py-0 rounded-md">
+                                    <a href="{{ route('item.show', $item->id) }}" class="hidden md:flex items-center hover:bg-green-800 hover:text-white rounded-tl-none rounded-bl-none text-green-600 font-bold px-2 py-2 md:py-0 rounded-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M9 6l6 6l-6 6"></path>
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="text-white shadow-lg rounded-xl min-w-min outline-2 outline outline-yellow-300">
+                        <div class="text-white shadow-lg rounded-lg min-w-min outline-2 outline outline-yellow-300">
                             <div class="md:flex md:flex-row md:justify-between">
                                 <div class="flex p-2 items-center gap-3">
                                     <img class="h-28 w-2h-28 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
