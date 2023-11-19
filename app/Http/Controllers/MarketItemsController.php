@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
  
 class MarketItemsController extends Controller
@@ -93,6 +94,9 @@ class MarketItemsController extends Controller
     {
         $item = MarketItems::findOrFail($id);
         $item->seller = User::find($item->seller_id);
+
+        // Session::put('previous_url', url()->previous());
+        // $previousUrl = Session::get('previous_url');
 
         return view('market.view', ['item' => $item]);
     }

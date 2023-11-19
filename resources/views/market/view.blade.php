@@ -1,10 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-3xl mx-auto lg:mt-36 mt-9">
+<div class="max-w-3xl mx-auto mt-10">
     @include('partials.alert')
     <h1 class="mb-3 text-white font-semibold text-4xl text-center">Check Product</h1>
-    <div class="flex md:hidden justify-center">
+
+    <div class="md:grid md:grid-cols-2 md:space-x-4 text-white">
+        <div class="mb-2 overflow-hidden rounded-2xl">
+            <img class="h-80 w-full transition ease-in-out duration-500 hover:scale-105 object-cover rounded-2xl" src="{{ asset('items/'.$item->item_image) }}" alt="">
+        </div>
+        <div>
+            <span class="font-bold text-lg">Seller</span>
+            <h1 class="mb-3 flex items-center gap-2">
+                <span>
+                    <img class="h-10 w-10" src="{{ asset('avatars/'.$item->seller['avatar']) }}" alt="">
+                </span> 
+                {{ $item->seller['fname'] }} {{ $item->seller['lname'] }}
+            </h1>
+
+            <span class="font-bold text-lg">Item Name</span>
+            <h1 class="mb-3"> {{ $item->item_name }}</h1>
+            
+            <span class="font-bold text-lg">Item Description</span>
+            <p class="mb-3 break-all">{{ $item->item_description }}</p>
+            
+            <span class="font-bold text-lg">Item Quantity</span>
+            <h1 class="mb-3"> {{ $item->item_qty }}</h1>
+            
+            <span class="font-bold text-lg">Item Price</span>
+            <h1 class="mb-3"> {{ $item->item_price }}</h1>
+        </div>
+    </div>
+
+    {{-- <div class="flex md:hidden justify-center">
         <table class="overflow-x-auto text-white table-auto">
             <tbody>
                 <tr>
@@ -49,9 +77,9 @@
                 </tr>
             </tbody>
         </table>
-    </div>  
-    @if(url()->previous() != url('/my_market'))
-        <form action="{{ route('order.add_order', $item->id) }}" method="POST" class="mt-4">
+    </div>   --}}
+    @if($item->seller['id'] != Auth::id())
+        <form action="{{ route('order.add_order', $item->id) }}" method="POST" class="mt-2">
             @csrf
             @method('PATCH')
             <label class="text-white pb-2 font-light">Item Quantity</label>
@@ -65,6 +93,6 @@
             <button type="submit" class="w-full text-white px-3 py-2 rounded-md shadow-lg bg-emerald-900 hover:bg-emerald-800">Order</button>
         </form>
     @endif
-    <a type="button" href="{{ url('/home') }}" class="w-full mt-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
+    <a type="button" href="{{ url()->previous() }}" class="w-full mt-3 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
 </div>
 @endsection
