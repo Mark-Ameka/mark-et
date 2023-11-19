@@ -76,6 +76,7 @@ class MarketItemsFactory extends Factory
 
         return [
             'seller_id' => $this->faker->numberBetween(1, 7), // Assuming there are 10 sellers
+            'item_image' => 'default.png',
             'item_name' => $this->faker->randomElement($items),
             'item_description' => $this->generate_countries(),
             'item_qty' => $this->faker->numberBetween(30, 500),
