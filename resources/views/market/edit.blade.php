@@ -2,11 +2,22 @@
 
 @section('content')
 <div class="max-w-lg mx-auto pt-3">
-    <div class=" rounded-md p-6">
-        <form method="POST" action="{{ route('item.update', $item->id) }}">
+        <div class=" rounded-md p-6">
+            @if ($is_default == false)
+            <form method="POST" action="{{ route('item.remove_image', $item->id) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="text-white bg-red-400 px-3 py-2">Remove image</button>
+            </form>
+        @endif
+        <form method="POST" action="{{ route('item.update', $item->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <h1 class="font-bold text-center pb-4 text-xl text-white">Adjust your item!</h1>
+            <div>
+                {{-- <label class="text-white" for="item_image">File here</label> --}}
+                <input type="file" name="item_image" id="item_image">
+            </div>
             <label class="text-white pb-2 font-light">Item Name</label>
             <div class="relative">
                 <input name="item_name" type="text" class="truncate w-full mb-3 pl-10 pr-1 py-2 border outline-none bg-transparent placeholder-neutral-300 text-white border-gray-300 rounded-lg" autocomplete="off" value="{{ $item->item_name }}">

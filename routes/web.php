@@ -35,6 +35,7 @@ Route::middleware('auth', 'preventBack')->group(function(){
     // for my market
     Route::get('/mymarket_search', [MarketItemsController::class, 'mymarket_search'])->name('item.mymarket_search');
     Route::get('/my_market', [MarketItemsController::class, 'mymarket_index'])->name('item.mymarket_index');
+    Route::patch('/remove_image/{id}', [MarketItemsController::class, 'remove_image'])->name('item.remove_image');
 
     // for update user password
     Route::patch('/user/update_pass/{id}', [UserController::class, 'update_pass'])->name('user.update_pass');

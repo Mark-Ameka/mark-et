@@ -6,6 +6,7 @@ use App\Models\MarketItems;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
  
 class MarketItemsController extends Controller
@@ -47,7 +48,10 @@ class MarketItemsController extends Controller
      */
     public function store(Request $request)
     {
+        $filename = null;
+        
         $validator = Validator::make($request->all(),[
+            'item_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'item_name' => 'required|string|max:50',
             'item_description' => 'required|string|max:200',
             'item_qty' => 'required',
@@ -58,8 +62,21 @@ class MarketItemsController extends Controller
             return redirect()->back()->with('errors', $validator->errors());
         }
 
+        if($request->hasFile('item_image')){
+            $file = $request->file('item_image');
+            $extension = $file->getClientOriginalExtension();
+            
+            $filename = time().'.'.$extension;
+            $directory = 'items';
+
+            $file->move($directory, $filename);
+        } else{
+            $filename = 'default.png';
+        }
+        
         MarketItems::create([
             'seller_id' => Auth::id(),
+            'item_image' => $filename,
             'item_name' => $request->item_name,
             'item_description' => $request->item_description,
             'item_qty' => $request->item_qty,
@@ -77,7 +94,7 @@ class MarketItemsController extends Controller
         $item = MarketItems::findOrFail($id);
         $item->seller = User::find($item->seller_id);
 
-        return view('market.view')->with('item', $item);
+        return view('market.view', ['item' => $item]);
     }
 
     /**
@@ -85,8 +102,13 @@ class MarketItemsController extends Controller
      */
     public function edit($id)
     {
-        $item = MarketItems::findOrFail($id); 
-        return view('market.edit', ['item' => $item]);
+        $is_default = true;
+        $item = MarketItems::findOrFail($id);
+
+        if($item->item_image != 'default.png'){
+            $is_default = false;
+        }
+        return view('market.edit', ['item' => $item, 'is_default' => $is_default]);
     }
 
     /**
@@ -96,6 +118,7 @@ class MarketItemsController extends Controller
     {
         $item = MarketItems::findOrFail($id);
         $validator = Validator::make($request->all(),[
+            'item_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'item_name' => 'required|string|max:50',
             'item_description' => 'required|string|max:200',
             'item_qty' => 'required',
@@ -105,8 +128,49 @@ class MarketItemsController extends Controller
         if ($validator->fails()){
             return redirect()->back()->with('errors', $validator->errors()->all());
         }
-        
-        $item->update($request->all()); 
+
+        // Item Image
+        if ($request->hasFile('item_image')) {
+            $file = $request->file('item_image');
+            $extension = $file->getClientOriginalExtension();
+            
+            $filename = time().'.'.$extension;
+            $directory = 'items';
+    
+            $file->move($directory, $filename);
+    
+            if ($item->item_image != 'default.png') {
+                File::delete(public_path('items/' . $item->item_image));
+            }
+
+            $item->item_image = $filename;
+        }
+
+        $item->item_name = $request->item_name;
+        $item->item_description = $request->item_description;
+        $item->item_qty = $request->item_qty;
+        $item->item_price = $request->item_price;
+
+        $item->save();
+        return redirect()->back()->with('success', 'Item updated successfully.');
+    }
+
+    public function remove_image(Request $request, $id)
+    {
+        $item = MarketItems::find($id);
+        $validated = $request->validate([
+            'item_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($item->item_image != 'default.png') {
+            $filename = 'default.png';
+    
+            File::delete(public_path('items/' . $item->item_image));
+    
+            $validated['item_image'] = $filename;
+        }
+
+        $item->update(['item_image' => $validated['item_image']]);
         return redirect()->back()->with('success', 'Item updated successfully.');
     }
 
@@ -116,6 +180,11 @@ class MarketItemsController extends Controller
     public function destroy($id)
     {
         $item = MarketItems::findOrFail($id);
+        
+        if ($item->item_image != 'default.png') {
+            File::delete(public_path('items/' . $item->item_image));
+        }
+
         $item->delete();
 
         return redirect()->back()->with('success', 'Item deleted successfully.');

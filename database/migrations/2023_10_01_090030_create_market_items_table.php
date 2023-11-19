@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('market_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
+            $table->string('item_image')->nullable();
             $table->string('item_name', 50);
             $table->string('item_description', 200);
             $table->integer('item_qty');

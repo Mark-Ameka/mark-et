@@ -11,6 +11,7 @@ class MarketItems extends Model
     
     protected $fillable = [
         'seller_id',
+        'item_image',
         'item_name',
         'item_description',
         'item_qty',
