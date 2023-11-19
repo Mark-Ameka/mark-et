@@ -76,8 +76,8 @@
                     @if ($item->seller_id != Auth::id())
                         <div class="text-white shadow-lg rounded-xl min-w-min">
                             <div class="md:flex md:flex-row md:justify-between">
-                                <div class="flex p-3 items-center gap-3">
-                                    <img class="h-24 w-24 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
+                                <div class="flex p-2 items-center gap-3">
+                                    <img class="h-28 w-28 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
                                     <div class="md:flex-col justify-center items-baseline pb-0">
                                         <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
                                         <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
@@ -124,8 +124,8 @@
                     @else
                         <div class="text-white shadow-lg rounded-xl min-w-min outline-2 outline outline-yellow-300">
                             <div class="md:flex md:flex-row md:justify-between">
-                                <div class="flex p-3 items-center gap-3">
-                                    <img class="h-24 w-24 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
+                                <div class="flex p-2 items-center gap-3">
+                                    <img class="h-28 w-2h-28 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
                                     <div class="md:flex-col justify-center items-baseline pb-0">
                                         <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
                                         <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
