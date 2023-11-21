@@ -124,3 +124,30 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 });
+
+// display total amount
+document.addEventListener("DOMContentLoaded", function () {
+    var quantity_input = document.getElementById("total_quantity");
+    var totalAmountElement = document.getElementById("total_amount");
+
+    // get actual value for the quantity
+    var actual_value = parseInt(
+        document.getElementById("quantity_value").innerText
+    );
+
+    // default value
+    totalAmountElement.textContent = 0;
+
+    if (
+        quantity_input != null &&
+        totalAmountElement != null &&
+        actual_value != null
+    ) {
+        quantity_input.addEventListener("input", function () {
+            var quantityValue = parseFloat(quantity_input.value) || 0;
+            var totalAmount = quantityValue * actual_value;
+
+            totalAmountElement.textContent = totalAmount;
+        });
+    }
+});

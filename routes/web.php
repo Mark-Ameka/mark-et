@@ -30,7 +30,7 @@ Route::middleware('auth', 'preventBack')->group(function(){
     Route::resource('order', \App\Http\Controllers\OrderController::class);
 
     // search route
-    Route::get('/', [MarketItemsController::class, 'search'])->name('item.search');
+    Route::get('/home_search', [MarketItemsController::class, 'search'])->name('item.search');
 
     // for my market
     Route::get('/mymarket_search', [MarketItemsController::class, 'mymarket_search'])->name('item.mymarket_search');

@@ -53,7 +53,7 @@ class OrderController extends Controller
         $item = MarketItems::find($id);
 
         $validator = Validator::make($request->all(), [
-            'total_quantity' => ['required', 'lte:'.$item->item_qty, 'gt:0'],
+            'total_quantity' => ['numeric', 'required', 'lte:'.$item->item_qty, 'gt:0'],
         ]);
 
         if($validator->fails()){
