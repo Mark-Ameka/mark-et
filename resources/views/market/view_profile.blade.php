@@ -3,10 +3,6 @@
 @section('content')
 <div>
     <div class="relative">
-        <div class="absolute left-1/2 -translate-x-1/2 mx-auto max-w-lg">
-            @include('partials.alert')
-        </div>
-        
         {{-- <div class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-r from-red-500"></div> --}}
         <div id="container-cover" class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-l from-neutral-800"></div>
     
@@ -27,7 +23,7 @@
         </div>
     </div>
     <div class="max-w-4xl mx-auto">
-        <div class="lg:mt-40 mt-9">
+        <div class="lg:mt-40 mt-36 overflow-x-auto">
             <div class="flex md:flex-row flex-col items-center gap-3 my-4">
                 @if ($items->hasPages())
                     <form action="{{ route('set_pagination') }}" method="POST">
@@ -71,8 +67,8 @@
                     @endforeach
                 </tbody>
             </table>
-            <a type="button" href="{{ url()->previous() }}" class="w-full my-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
         </div>
+        <a type="button" href="{{ url()->previous() }}" class="w-full my-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
     </div>
 </div>
 @endsection

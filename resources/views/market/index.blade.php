@@ -77,18 +77,26 @@
                         <div class="text-white shadow-lg rounded-lg min-w-min">
                             <div class="md:flex md:flex-row md:justify-between">
                                 <div class="flex p-2 items-center gap-3">
-                                    <img class="h-28 w-28 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
+                                    <img class="h-36 w-36 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
                                     <div class="md:flex-col justify-center items-baseline pb-0">
                                         <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
                                         <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
+                                        <p class="truncate">Price: {{ $item->item_price }}</p>
                                         <div class="flex gap-2 mt-2">
-                                            <p class="truncate">Seller: {{ $item->seller['fname'] }}</p>
-                                            {{-- Button for view profile --}}
-                                            <div class="hidden md:block">
-                                                <a href="{{ route('user.show', $item->seller['id']) }}" class="text-blue-400 line-clamp-1">
-                                                    Visit Profile
-                                                </a>
+                                            <div class="flex flex-col">
+                                                <div class="flex gap-2 items-center mb-2">
+                                                    <span>Seller:</span>
+                                                    <img class="h-6 w-6 object-cover rounded-full" src="{{ asset('avatars/'.$item->seller['avatar']) }}" alt="">
+                                                    <p class="truncate">
+                                                        {{ $item->seller['fname'] }}</p>
+                                                </div>
+                                                <div class="hidden md:block">
+                                                    <a href="{{ route('user.show', $item->seller['id']) }}" class="text-blue-400 line-clamp-1">
+                                                        Visit Profile
+                                                    </a>
+                                                </div>
                                             </div>
+                                            {{-- Button for view profile --}}
                                         </div>
                                     </div>
                                 </div>
@@ -125,13 +133,33 @@
                         <div class="text-white shadow-lg rounded-lg min-w-min outline-2 outline outline-yellow-300">
                             <div class="md:flex md:flex-row md:justify-between">
                                 <div class="flex p-2 items-center gap-3">
-                                    <img class="h-28 w-2h-28 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
+                                    <img class="h-36 w-36 object-cover rounded-lg" src="{{ asset('items/'.$item->item_image) }}" alt="">
                                     <div class="md:flex-col justify-center items-baseline pb-0">
                                         <h2 class="break-all line-clamp-1 text-xl font-bold mr-4">{{ $item->item_name }}</h2>
                                         <p class="line-clamp-1 mr-4">{{ $item->item_description }}</p>
+                                        <p class="truncate">Price: {{ $item->item_price }}</p>
                                         <div class="flex gap-2 mt-2">
-                                            <p class="truncate">Seller: {{ $item->seller['fname'] }}</p>
+                                            <div class="flex flex-col">
+                                                <div class="flex gap-2 items-center mb-2">
+                                                    <span>Seller:</span>
+                                                    <img class="h-6 w-6 object-cover rounded-full" src="{{ asset('avatars/'.$item->seller['avatar']) }}" alt="">
+                                                    <p class="truncate">
+                                                        {{ $item->seller['fname'] }}</p>
+                                                </div>
+                                                <div class="hidden md:block">
+                                                    <a href="{{ route('user.show', $item->seller['id']) }}" class="text-yellow-300 line-clamp-1">
+                                                        Your Profile
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 p-3 gap-3 items-center justify-center">
+                                    <div class="md:hidden block">
+                                        <a href="{{ route('user.show', $item->seller['id']) }}" class="flex justify-center text-neutral-900 bg-yellow-300 rounded-md py-2">
+                                            Your Profile
+                                        </a>
                                     </div>
                                 </div>
                             </div>
