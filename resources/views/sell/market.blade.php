@@ -66,10 +66,19 @@
                 @endif
                 {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
             </div>
+            
+            <!-- Button trigger modal -->
+            <div class="flex justify-center md:justify-start mt-4">
+                <button type="button" class="px-3 py-1 text-sm text-white bg-red-800 hover:bg-red-700 font-light rounded-md" data-bs-toggle="modal" data-bs-target="#factoryReset">
+                    Factory reset
+                </button>
+            </div>
+
+            @include('sell.partials.reset_market')
 
             @include('partials.alert')
 
-            <div class="overflow-x-auto my-8 grid">
+            <div class="overflow-x-auto my-6 grid">
                 <table class="divide-y-2 divide-neutral-600">
                     <thead class="text-neutral-100">
                         <th class="whitespace-nowrap px-4 py-2 font-medium">Item Name</th>
@@ -92,13 +101,13 @@
                                     <a class="text-blue-600 font-medium" href="{{ route('item.edit', $item->id) }}">Edit</a>
                                 </td>
                                 <td class="whitespace-nowrap px-2 py-2">
-                                    <form action="{{ route('item.destroy', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="flex items-center text-red-600 font-medium">
-                                            Remove
-                                        </button>
-                                    </form>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="flex items-center text-red-600 font-medium" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        Remove
+                                    </button>
+
+                                    <!-- Modal -->
+                                    @include('sell.partials.remove_form')
                                 </td>
                             </tr>
                         @endforeach
@@ -107,6 +116,7 @@
             </div>
 
             {{-- Template --}}
+            
             {{-- <div class="overflow-x-auto my-8 grid">
                 <table class="divide-y-2 divide-neutral-600">
                     <thead class="text-neutral-100">

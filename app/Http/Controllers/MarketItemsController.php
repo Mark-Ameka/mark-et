@@ -194,6 +194,13 @@ class MarketItemsController extends Controller
         return redirect()->back()->with('success', 'Item deleted successfully.');
     }
 
+    public function factory_reset()
+    {
+        MarketItems::where('seller_id', Auth::id())->delete();
+    
+        return redirect()->back()->with('success', 'Wiped all information!');
+    }
+
     public function search(Request $request)
     {
         $id = Auth::id();

@@ -131,17 +131,23 @@ document.addEventListener("DOMContentLoaded", function () {
     var totalAmountElement = document.getElementById("total_amount");
 
     // get actual value for the quantity
-    var quantity_value = parseInt(
-        document.getElementById("quantity_value").innerText
-    );
+    if (document.getElementById("quantity_value") != null) {
+        var quantity_value = parseInt(
+            document.getElementById("quantity_value").innerText
+        );
+    }
 
     // get actual value for the price
-    var price_value = parseFloat(
-        document.getElementById("price_value").innerText
-    );
+    if (document.getElementById("price_value") != null) {
+        var price_value = parseFloat(
+            document.getElementById("price_value").innerText
+        );
+    }
 
     // default value
-    totalAmountElement.textContent = "₱0.00";
+    if (totalAmountElement != null) {
+        totalAmountElement.textContent = "₱0.00";
+    }
 
     if (
         quantity_input != null &&
@@ -189,4 +195,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+});
+
+// bootstrap tooltip
+document.addEventListener("DOMContentLoaded", function () {
+    const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]'
+    );
+    const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+    );
 });

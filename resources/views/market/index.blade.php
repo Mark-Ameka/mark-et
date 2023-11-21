@@ -115,9 +115,9 @@
                                     </div>
                                 </div>
                                 {{-- End Mobile --}}
-
+                                
                                 {{-- Web --}}
-                                <div class="flex">
+                                <div class="flex" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Product">
                                     {{-- View item --}}
                                     <a href="{{ route('item.show', $item->id) }}" class="hidden md:flex items-center hover:bg-green-800 hover:text-white rounded-tl-none rounded-bl-none text-green-600 font-bold px-2 py-2 md:py-0 rounded-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
