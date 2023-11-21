@@ -131,23 +131,62 @@ document.addEventListener("DOMContentLoaded", function () {
     var totalAmountElement = document.getElementById("total_amount");
 
     // get actual value for the quantity
-    var actual_value = parseInt(
+    var quantity_value = parseInt(
         document.getElementById("quantity_value").innerText
     );
 
+    // get actual value for the price
+    var price_value = parseFloat(
+        document.getElementById("price_value").innerText
+    );
+
     // default value
-    totalAmountElement.textContent = 0;
+    totalAmountElement.textContent = "₱0.00";
 
     if (
         quantity_input != null &&
         totalAmountElement != null &&
-        actual_value != null
+        quantity_value != NaN &&
+        price_value != NaN
     ) {
         quantity_input.addEventListener("input", function () {
-            var quantityValue = parseFloat(quantity_input.value) || 0;
-            var totalAmount = quantityValue * actual_value;
+            var total_quantity = parseFloat(quantity_input.value) || 0;
+            var totalAmount = total_quantity * price_value;
+
+            if (isNaN(totalAmount)) {
+                totalAmount = 0;
+            }
+
+            // Round to two decimal places
+            totalAmount = totalAmount.toFixed(2);
+
+            // Get the user's locale from the browser
+            var userLocale =
+                navigator.language || navigator.userLanguage || "en-US";
+
+            // Format with comma separators and currency based on the user's locale
+            totalAmount = new Intl.NumberFormat(userLocale, {
+                style: "currency",
+                currency: "PHP",
+            }).format(totalAmount);
 
             totalAmountElement.textContent = totalAmount;
+
+            if (quantity_input.value > quantity_value) {
+                totalAmountElement.classList.remove("text-emerald-200");
+                totalAmountElement.classList.add("text-red-600");
+                totalAmountElement.textContent =
+                    "You exceeded " + quantity_value;
+            } else if (quantity_input.value <= quantity_value) {
+                totalAmountElement.classList.remove("text-red-600");
+                totalAmountElement.classList.add("text-emerald-200");
+            }
+
+            if (quantity_input.value <= -1) {
+                totalAmountElement.classList.remove("text-emerald-200");
+                totalAmountElement.classList.add("text-red-600");
+                totalAmountElement.textContent = "You for real?";
+            }
         });
     }
 });
