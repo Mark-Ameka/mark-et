@@ -1,4 +1,3 @@
-@if ($paginator->hasPages())
 <div class="flex md:flex-row flex-col flex-grow justify-between items-center gap-3">
     <div>
         <p class="small text-white">
@@ -68,4 +67,3 @@
         @endif
     </ol>
 </div>
-@endif

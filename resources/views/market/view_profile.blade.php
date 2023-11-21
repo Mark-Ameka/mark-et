@@ -25,16 +25,16 @@
     <div class="max-w-4xl mx-auto">
         <div class="lg:mt-40 mt-36 overflow-x-auto">
             <div class="flex md:flex-row flex-col items-center gap-3 my-4">
-                @if ($items->hasPages())
-                    <form action="{{ route('set_pagination') }}" method="POST">
-                        @csrf
-                            <select class="cursor-pointer text-white outline-none shadow-md rounded-lg bg-neutral-800 px-3 py-[5px] border-none" name="pagination" id="pagination" onchange="this.form.submit()">
-                            <option value="10" {{ $pagination == 10 ? 'selected' : '' }}>10</option>
-                            <option value="20" {{ $pagination == 20 ? 'selected' : '' }}>20</option>
-                            <option value="30" {{ $pagination == 30 ? 'selected' : '' }}>30</option>
-                        </select>
-                    </form>
-                @endif
+                {{-- @if ($items->hasPages()) --}}
+                {{-- @endif --}}
+                <form action="{{ route('set_pagination') }}" method="POST">
+                    @csrf
+                        <select class="cursor-pointer text-white outline-none shadow-md rounded-lg bg-neutral-800 px-3 py-[5px] border-none" name="pagination" id="pagination" onchange="this.form.submit()">
+                        <option value="10" {{ $pagination == 10 ? 'selected' : '' }}>10</option>
+                        <option value="20" {{ $pagination == 20 ? 'selected' : '' }}>20</option>
+                        <option value="30" {{ $pagination == 30 ? 'selected' : '' }}>30</option>
+                    </select>
+                </form>
                 {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
             </div>
             <table class="w-full overflow-x-auto text-white divide-y divide-neutral-100/80">
@@ -67,6 +67,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="md:hidden flex justify-end mt-4">
+            {{ $items->onEachSide(1)->links('vendor.pagination.custom') }}
         </div>
         <a type="button" href="{{ url()->previous() }}" class="w-full my-4 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded shadow-lg">Return</a>
     </div>
