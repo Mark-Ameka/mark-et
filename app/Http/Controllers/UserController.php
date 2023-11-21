@@ -122,7 +122,7 @@ class UserController extends Controller
         }
 
         User::where('id', Auth::id())->update(['avatar' => $validated['avatar']]);
-        return redirect()->back()->with('success', 'Profile Updated!');
+        return redirect()->back()->with('success', 'Profile Removed!');
     }
 
     public function update_pass(Request $request, $id)

@@ -78,11 +78,12 @@
                 </div>
             </div>
 
-            @include('partials.alert')
             <button type="submit" class="w-full mt-4 bg-neutral-800 hover:bg-neutral-700 shadow-lg text-white font-bold py-2 px-4 rounded">I'm selling it!</button>
         </form>
         <a type="button" href="{{ url('/home') }}" class="w-full mt-2 text-center bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Return</a>
     </div>
+    
+    @include('partials.alert')
 </div>
 
 @endsection

@@ -3,9 +3,6 @@
 @section('content')
 <div>
     <div class="relative">
-        <div class="absolute left-1/2 -translate-x-1/2 mx-auto max-w-lg">
-            @include('partials.alert')
-        </div>
         {{-- Cover --}}
         {{-- <div class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-r from-purple-500"></div> --}}
         <div id="container-cover" class="h-60 w-full rounded-bl-xl rounded-br-xl bg-gradient-to-l from-neutral-800"></div>
@@ -150,6 +147,7 @@
             <a type="button" href="{{ url('/home') }}" class="w-full mt-2 text-center shadow-lg bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Return</a>
         </div>
     </div>
+    @include('partials.alert')
 </div>
 
 @endsection

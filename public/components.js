@@ -1,8 +1,10 @@
-if (document.getElementById("myAlert") != null) {
-    setTimeout(function () {
-        document.getElementById("myAlert").style.display = "none";
-    }, 3000);
-}
+// Alert Copy JS
+
+// if (document.getElementById("myAlert") != null) {
+//     setTimeout(function () {
+//         document.getElementById("myAlert").style.display = "none";
+//     }, 3000);
+// }
 
 //profile pic
 document.addEventListener("DOMContentLoaded", function () {
@@ -205,4 +207,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const tooltipList = [...tooltipTriggerList].map(
         (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
     );
+});
+
+// boostrap toast jquery for success
+document.addEventListener("DOMContentLoaded", function () {
+    $(document).ready(function () {
+        $("#successToast").toast("show");
+    });
+});
+
+// boostrap toast jquery for errors
+document.addEventListener("DOMContentLoaded", function () {
+    const toastContainer = document.querySelector(".toast-container");
+
+    document.querySelectorAll(".toast").forEach(function (toast) {
+        const toastInstance = new bootstrap.Toast(toast);
+
+        // Show each toast
+        toastInstance.show();
+    });
 });
