@@ -46,7 +46,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $pagination = session('pagination', 10);
 
@@ -54,9 +54,8 @@ class UserController extends Controller
 
         $count_sell = MarketItems::where('seller_id', $id)->get();
 
-        foreach ($items as $item) {
-            $seller = User::find($item->seller_id);
-        }
+        $seller = User::find($id);
+        
         return view('market.view_profile', ['items' => $items, 'seller' => $seller, 'pagination' => $pagination, 'count_sell' => $count_sell]);
     }
 
