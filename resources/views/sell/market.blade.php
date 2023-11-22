@@ -100,12 +100,12 @@
                                 </td>
                                 <td class="whitespace-nowrap px-2 py-2">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="flex items-center text-red-600 font-medium" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    <button type="button" class="flex items-center text-red-600 font-medium" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $item->id }}">
                                         Remove
                                     </button>
 
                                     <!-- Modal -->
-                                    @include('sell.partials.remove_form')
+                                    @include('sell.partials.remove_form', ['item' => $item])
                                 </td>
                             </tr>
                         @endforeach

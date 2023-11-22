@@ -227,3 +227,27 @@ document.addEventListener("DOMContentLoaded", function () {
         toastInstance.show();
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    var get_email;
+    if (document.getElementById("get_email") != null) {
+        get_email = document.getElementById("get_email").innerText;
+    }
+
+    var confirm_reset = document.getElementById("confirm_reset");
+    var reset_button = document.getElementById("reset_button");
+
+    if (confirm_reset != null && reset_button != null) {
+        confirm_reset.addEventListener("input", function () {
+            if (get_email == confirm_reset.value) {
+                reset_button.disabled = false;
+                confirm_reset.classList.remove("border-red-900");
+                confirm_reset.classList.add("border-green-800");
+            } else if (get_email != confirm_reset.value) {
+                confirm_reset.classList.remove("border-green-800");
+                confirm_reset.classList.add("border-red-900");
+                reset_button.disabled = true;
+            }
+        });
+    }
+});
