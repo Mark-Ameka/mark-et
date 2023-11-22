@@ -143,7 +143,7 @@
                 @include('users.edit_pass')
             </div>
         </div>
-        <div class="p-6 mx-auto pt-3 mb-5 mt-2 md:mb-0">
+        <div class="p-6 mx-auto pt-3 mb-3 mt-2 md:mb-0">
             <a type="button" href="{{ url('/home') }}" class="w-full mt-2 text-center shadow-lg bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Return</a>
         </div>
     </div>
