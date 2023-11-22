@@ -228,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// factory reset modal
 document.addEventListener("DOMContentLoaded", function () {
     var get_email;
     if (document.getElementById("get_email") != null) {
